@@ -1,4 +1,4 @@
-package bytesmyth.games.edpg;
+package bytesmyth.games.edpg.util;
 
 public class MetaData {
 

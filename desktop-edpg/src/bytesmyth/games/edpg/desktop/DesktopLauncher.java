@@ -4,7 +4,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
 import bytesmyth.games.edpg.ExecDysfuncPlatformer;
-import bytesmyth.games.edpg.MetaData;
+import bytesmyth.games.edpg.util.MetaData;
 
 public class DesktopLauncher {
 	
