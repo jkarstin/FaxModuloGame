@@ -77,7 +77,9 @@ public class Neuron extends GameActor {
 	}
 	
 	public void setDirection(int direction) {
-		this.direction = direction;
+		this.direction = direction%8;
+		
+		this.updateRotation();
 	}
 	
 	@Override
@@ -91,6 +93,10 @@ public class Neuron extends GameActor {
 	@Override
 	public void updateOrigin() {
 		this.setOrigin(48f, 48f);
+	}
+	
+	public void updateRotation() {
+		this.setRotation(this.direction * 45f);
 	}
 	
 	@Override

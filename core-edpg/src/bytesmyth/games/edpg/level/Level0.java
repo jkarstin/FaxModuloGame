@@ -5,21 +5,24 @@ import bytesmyth.games.edpg.actor.Neuron;
 
 public class Level0 extends LevelScreen {
 	
-	GameActor badlogic;
+	GameActor jexModem;
 	Neuron neuron;
+	float elapsedTime;
 	
 	@Override
 	public void initialize() {
-		badlogic = new GameActor(this.mainStage);
-		badlogic.loadTexture("badlogic.jpg");
+		jexModem = new GameActor(this.mainStage);
+		jexModem.loadAnimationFromSpritesheet("jex_modem_walk.png", 2, 4, 0.08f, true);
 		
 		neuron = new Neuron(16f, 32f, this.mainStage);
+		elapsedTime = 0f;
 	}
 
 	@Override
 	public void update(float dt) {
-		badlogic.moveBy(1f, 1f);
-		neuron.rotateBy(1);
+		elapsedTime += dt;
+		jexModem.moveBy(96f*dt, 0f);
+		neuron.setDirection((int)elapsedTime);
 	}
 
 }
