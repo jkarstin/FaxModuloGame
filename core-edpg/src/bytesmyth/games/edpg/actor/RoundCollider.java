@@ -12,21 +12,34 @@ public class RoundCollider extends Collider {
 	
 	/*** Constructors ***/
 	
-	public RoundCollider(float x, float y) {
-		super(SHAPE_TYP.Ellipse, x, y);
+	public RoundCollider(float x, float y, float width, float height) {
+		super(SHAPE_TYP.Ellipse, x, y, width, height);
 		
-		this.numSides = 8;
+		this.setNumSides(8);
 	}
-	public RoundCollider() { this(0f, 0f); }
+	public RoundCollider() { this(0f, 0f, 50f, 50f); }
 
-	public RoundCollider(float x, float y, Stage s) {
-		super(SHAPE_TYP.Ellipse, x, y, s);
+	public RoundCollider(float x, float y, float width, float height, Stage s) {
+		super(SHAPE_TYP.Ellipse, x, y, width, height, s);
 		
-		this.numSides = 8;
+		this.setNumSides(8);
 	}
-	public RoundCollider(Stage s) { this(0f, 0f, s); }
+	public RoundCollider(Stage s) { this(0f, 0f, 50f, 50f, s); }
 	
 	/*** Methods ***/
+	
+	//Getters
+	
+	public int getNumSides() {
+		return this.numSides;
+	}
+	
+	//Setters
+	
+	public void setNumSides(int n) {
+		this.numSides = n;
+		this.setBoundaryPolygon();
+	}
 	
 	//Overridden (Inherited or Required)
 
@@ -43,6 +56,14 @@ public class RoundCollider extends Collider {
 		}
 		
 		this.boundaryPolygon = new Polygon(vertices);
+	}
+	
+	@Override
+	public void setSize(float width, float height) {
+		super.setWidth(width);
+		super.setHeight(height);
+		if (this.numSides < 3) this.numSides = 3;
+		this.setBoundaryPolygon();
 	}
 
 }

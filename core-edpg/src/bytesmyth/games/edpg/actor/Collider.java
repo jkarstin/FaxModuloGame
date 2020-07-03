@@ -1,10 +1,13 @@
 package bytesmyth.games.edpg.actor;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Intersector.MinimumTranslationVector;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+
+import bytesmyth.games.edpg.util.MetaData;
 
 public abstract class Collider extends GameActor {
 	
@@ -21,38 +24,31 @@ public abstract class Collider extends GameActor {
 	protected Polygon boundaryPolygon;
 	protected boolean physical;
 	
-	//Temporary hold-overs from previous design
-	protected float collisionX, collisionY, collisionWidth, collisionHeight;
-	
 	/*** Constructors ***/
 	
-	public Collider(SHAPE_TYP type, float x, float y) {
+	public Collider(SHAPE_TYP type, float x, float y, float width, float height) {
 		super(x, y);
 		
 		this.shapeType = type;
 		this.physical = true;
 		
-		//Temporary hold-overs from previous design
-		this.collisionX = 0f;
-		this.collisionY = 0f;
-		this.collisionWidth = 1f;
-		this.collisionHeight = 1f;
+		this.loadAnimations();
+		
+		this.setSize(width, height);
 	}
-	public Collider(SHAPE_TYP type) { this(type, 0f, 0f); }
+	public Collider(SHAPE_TYP type) { this(type, 0f, 0f, 50f, 50f); }
 	
-	public Collider(SHAPE_TYP type, float x, float y, Stage s) {
+	public Collider(SHAPE_TYP type, float x, float y, float width, float height, Stage s) {
 		super(x, y, s);
 		
 		this.shapeType = type;
 		this.physical = true;
 		
-		//Temporary hold-overs from previous design
-		this.collisionX = 0f;
-		this.collisionY = 0f;
-		this.collisionWidth = 1f;
-		this.collisionHeight = 1f;
+		this.loadAnimations();
+		
+		this.setSize(width, height);
 	}
-	public Collider(SHAPE_TYP type, Stage s) { this(type, 0f, 0f, s); }
+	public Collider(SHAPE_TYP type, Stage s) { this(type, 0f, 0f, 50f, 50f, s); }
 	
 	/*** Methods ***/
 	
@@ -73,10 +69,7 @@ public abstract class Collider extends GameActor {
 	
 	public Polygon getBoundaryPolygon() {
 		if (this.boundaryPolygon == null) return null;
-		this.boundaryPolygon.setPosition(
-			this.getX()+this.collisionX+(this.getWidth()-this.collisionWidth)/2f,
-			this.getY()+this.collisionY-(this.collisionHeight)/2f
-		);
+		this.boundaryPolygon.setPosition(this.getX(), this.getY());
 		this.boundaryPolygon.setOrigin(this.getOriginX(), this.getOriginY());
 		this.boundaryPolygon.setRotation(this.getRotation());
 		this.boundaryPolygon.setScale(this.getScaleX(), this.getScaleY());
@@ -90,15 +83,9 @@ public abstract class Collider extends GameActor {
 	}
 	
 	public void setBoundaryPolygon() {
-		this.setBoundaryPolygon(this.collisionWidth, this.collisionHeight);
+		this.setBoundaryPolygon(this.getWidth(), this.getHeight());
 	}
-	
-	public void setCollisionSize(float w, float h) {
-		this.collisionWidth  = w;
-		this.collisionHeight = h;
-		this.setBoundaryPolygon();
-	}
-	
+		
 	//Functional
 	
 	public boolean isWithinDistance(float distance, Collider other) {
@@ -129,27 +116,67 @@ public abstract class Collider extends GameActor {
 	}
 	
 	public Vector2 preventOverlap(Collider other) {
-		if (this.isPhysical() && other.isPhysical()) {
+		if (other != null && this.isPhysical() && other.isPhysical()) {
 			Polygon poly1 = this.getBoundaryPolygon();
 			Polygon poly2 = other.getBoundaryPolygon();
 			
 			//initial test to improve performance
 			if (!poly1.getBoundingRectangle().overlaps(poly2.getBoundingRectangle())) {
-				return null;
+				return Vector2.Zero;
 			}
 			
 			MinimumTranslationVector mtv = new MinimumTranslationVector();
 			boolean polygonOverlap = Intersector.overlapConvexPolygons(poly1, poly2, mtv);
 			
 			if (!polygonOverlap) {
-				return null;
+				return Vector2.Zero;
 			}
 			
 //			this.moveBy(mtv.normal.x * mtv.depth, mtv.normal.y * mtv.depth);
 			Vector2 tmp = new Vector2();
 			return tmp.set(mtv.normal).scl(mtv.depth);
-		}
+		}		
 		return Vector2.Zero;
+	}
+	
+	//Utility
+	
+	private void loadAnimations() {
+		switch (this.shapeType) {
+		case Box:
+			this.loadTexture("gui/collision_wireframe_rect.png");
+			break;
+		case Ellipse:
+			this.loadTexture("gui/collision_wireframe_round.png");
+			break;
+		default:
+			break;
+		}
+	}
+	
+	//Overridden (Inherited or Required)
+	
+	@Override
+	public void draw(Batch batch, float parentAlpha) {
+		super.draw(batch, parentAlpha);
+		
+		if (this.isVisible() && MetaData.SHOW_WIREFRAMES) {
+			batch.draw(
+				this.animator.getCurrentFrame(),
+				this.getX(), this.getY(),
+				this.getOriginX(), this.getOriginY(),
+				this.getWidth(), this.getHeight(),
+				this.getScaleX(), this.getScaleY(),
+				this.getRotation()
+				);
+		}
+	}
+	
+	@Override
+	public void setSize(float width, float height) {
+		super.setWidth(width);
+		super.setHeight(height);
+		this.setBoundaryPolygon();
 	}
 	
 }

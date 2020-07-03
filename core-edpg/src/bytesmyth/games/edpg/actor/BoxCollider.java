@@ -7,15 +7,15 @@ public class BoxCollider extends Collider {
 	
 	/*** Constructors ***/
 	
-	public BoxCollider(float x, float y) {
-		super(SHAPE_TYP.Box, x, y);
+	public BoxCollider(float x, float y, float width, float height) {
+		super(SHAPE_TYP.Box, x, y, width, height);
 	}
-	public BoxCollider() { this(0f, 0f); }
+	public BoxCollider() { this(0f, 0f, 50f, 50f); }
 
-	public BoxCollider(float x, float y, Stage s) {
-		super(SHAPE_TYP.Box, x, y, s);
+	public BoxCollider(float x, float y, float width, float height, Stage s) {
+		super(SHAPE_TYP.Box, x, y, width, height, s);
 	}
-	public BoxCollider(Stage s) { this(0f, 0f, s); }
+	public BoxCollider(Stage s) { this(0f, 0f, 50f, 50f, s); }
 	
 	/*** Methods ***/
 	
