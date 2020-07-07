@@ -1,7 +1,5 @@
 package bytesmyth.games.edpg.actor;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -10,88 +8,142 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Align;
 
-public class JexModem extends GameActor {
+import bytesmyth.games.edpg.actor.Neuron.DIRECTION;
+
+public class JexModem extends PhysObject {
 	
 	/*** Fields ***/
 	
-	private Vector2 moveVector;
-	private float moveSpeed = 144f;
+	private float moveSpeed = 150f;
 	private Animation<TextureRegion> idleAnim, walkAnim;
-	private Collider collider;
 	
 	private Neuron neuron;
 	private boolean neuronMode;
-	private Vector2 tmp;
 	
 	/*** Constructors ***/
 	
 	public JexModem(float x, float y) {
 		super(0f, 0f);
 		
-		this.moveVector = new Vector2();
 		this.loadAnimations();
-		this.collider = new BoxCollider(0f, 0f, this.getWidth(), this.getHeight());
+		this.setPosition(x, y);
+		this.velocity.y = -GROUNDING_DISTANCE*15f;
+		this.grounded = true;
 		
 		this.neuron = new Neuron();
 		this.neuron.setVisible(false);
 		this.neuronMode = false;
-		
-		this.setPosition(x, y);
 	}
 	public JexModem() { this(0f, 0f); }
 
 	public JexModem(float x, float y, Stage s) {
 		super(0f, 0f, s);
 		
-		this.moveVector = new Vector2();
 		this.loadAnimations();
-		this.collider = new BoxCollider(x-40f, y, this.getWidth(), this.getHeight(), s);
+		this.setPosition(x, y);
+		this.velocity.y = -GROUNDING_DISTANCE*15f;
+		this.grounded = true;
 		
 		this.neuron = new Neuron(s);
 		this.neuron.setVisible(false);
 		this.neuronMode = false;
-		
-		this.setPosition(x, y);
 	}
 	public JexModem(Stage s) { this(0f, 0f, s); }
 	
 	/*** Methods ***/
 	
-	private void loadAnimations() {
-		this.idleAnim = this.loadTexture("jex_modem.png");
-		this.walkAnim = this.loadAnimationFromSpritesheet("jex_modem_walk.png", 2, 4, 0.08f, true);
-		this.animator.setAnimation(this.idleAnim);
-	}
+	//Player input
 	
 	private void neuronModeInputProcessing() {
+		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) ||
+			Gdx.input.isKeyJustPressed(Input.Keys.TAB)) {
+			this.neuronMode = false;
+			this.neuron.setVisible(false);
+			this.neuron.setDirection(DIRECTION.Center);
+			this.animator.resume();
+		}
+		
 		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 			this.neuronMode = false;
 			this.setPosition(this.neuron.getReturnPoint().x, this.neuron.getReturnPoint().y, Align.center);
 			this.neuron.setVisible(false);
+			this.neuron.setDirection(DIRECTION.Center);
 			this.animator.resume();
 		}
 		
 		if (Gdx.input.isKeyJustPressed(Input.Keys.D)) {
-			this.tmp.x = 1f;
+			switch (this.neuron.getDirection()) {
+			case Up:
+			case UpLeft:
+				this.neuron.setDirection(DIRECTION.UpRight);
+				break;
+			case Down:
+			case DownLeft:
+				this.neuron.setDirection(DIRECTION.DownRight);
+				break;
+			default:
+				this.neuron.setDirection(DIRECTION.Right);
+				break;
+			}
 		}
 		if (Gdx.input.isKeyJustPressed(Input.Keys.A)) {
-			this.tmp.x = -1f;
+			switch (this.neuron.getDirection()) {
+			case Up:
+			case UpRight:
+				this.neuron.setDirection(DIRECTION.UpLeft);
+				break;
+			case Down:
+			case DownRight:
+				this.neuron.setDirection(DIRECTION.DownLeft);
+				break;
+			default:
+				this.neuron.setDirection(DIRECTION.Left);
+				break;
+			}
 		}
 		if (Gdx.input.isKeyJustPressed(Input.Keys.W)) {
-			this.tmp.y = 1f;
+			switch (this.neuron.getDirection()) {
+			case Right:
+			case DownRight:
+				this.neuron.setDirection(DIRECTION.UpRight);
+				break;
+			case Left:
+			case DownLeft:
+				this.neuron.setDirection(DIRECTION.UpLeft);
+				break;
+			default:
+				this.neuron.setDirection(DIRECTION.Up);
+				break;
+			}
 		}
 		if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
-			this.tmp.y = -1f;
+			switch (this.neuron.getDirection()) {
+			case Right:
+			case UpRight:
+				this.neuron.setDirection(DIRECTION.DownRight);
+				break;
+			case Left:
+			case UpLeft:
+				this.neuron.setDirection(DIRECTION.DownLeft);
+				break;
+			default:
+				this.neuron.setDirection(DIRECTION.Down);
+				break;
+			}
 		}
-		
-		this.neuron.setDirection(this.tmp);
 	}
 	
 	private void movementInputProcessing(float dt) {
-		boolean walking = false;
-		this.tmp = new Vector2();
+		Vector2 moveVector = new Vector2();
 		
-		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+			Gdx.app.exit();
+		}
+		
+		boolean walking = false;
+		Vector2 tmp = new Vector2();
+		
+		if (Gdx.input.isKeyJustPressed(Input.Keys.TAB)) {
 			this.neuronMode = true;
 			this.neuron.setPosition(this.getX(Align.center), this.getY(Align.center));
 			this.neuron.setVisible(true);
@@ -100,28 +152,30 @@ public class JexModem extends GameActor {
 		}
 		
 		if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-			this.moveVector.add(this.tmp.set(Vector2.X).scl(this.moveSpeed));
+			moveVector.add(tmp.set(Vector2.X).scl(this.moveSpeed));
 			walking = !walking;
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-			this.moveVector.add(this.tmp.set(Vector2.X).scl(-this.moveSpeed));
+			moveVector.add(tmp.set(Vector2.X).scl(-this.moveSpeed));
 			walking = !walking;
 		}
 		
-		this.tmp = null;
+		if (this.grounded && Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+			this.velocity.y = 350f;
+		}
 		
-		this.moveVector.scl(dt);
+		tmp = null;
 		
 		if (walking) {
-			if (this.moveVector.x < 0f) {
+			if (moveVector.x < 0f) {
 				this.setScale(-1f, 1f);
 			}
-			else if (this.moveVector.x > 0f) {
+			else if (moveVector.x > 0f) {
 				this.setScale(1f, 1f);
 			}
 		}
 		
-		this.moveBy(moveVector.x, moveVector.y);
+		this.velocity.x = moveVector.x;
 		
 		if (this.animator.animation().equals(this.idleAnim)) {
 			if (walking) {
@@ -136,38 +190,31 @@ public class JexModem extends GameActor {
 		}
 	}
 	
+	//Utility
+	
+	private void loadAnimations() {
+		this.idleAnim = this.loadTexture("jex_modem.png");
+		this.walkAnim = this.loadAnimationFromSpritesheet("jex_modem_walk.png", 2, 4, 0.08f, true);
+		this.animator.setAnimation(this.idleAnim);
+		this.setSize(this.animator.getKeyFrame(0f).getRegionWidth(), this.animator.getKeyFrame(0f).getRegionHeight());
+	}
+	
+	//Overridden (Inherited or Required)
+	
 	@Override
-	public void act(float dt) {
-		super.act(dt);
-		
-		if (this.neuronMode) neuronModeInputProcessing();
-		else movementInputProcessing(dt);
+	public void act(float dt) {		
+		if (this.neuronMode) {
+			neuronModeInputProcessing();
+		}
+		else {
+			super.act(dt);
+			movementInputProcessing(dt);
+		}
 	}
 	
 	@Override
 	public void setPosition(float x, float y) {
 		super.setPosition(x-40f, y);
-		if (this.collider != null) this.collider.setPosition(x-40f, y);
-	}
-	
-	@Override
-	public void moveBy(float x, float y) {
-		Vector2 adjustment = new Vector2();
-		
-		if (collider != null) {
-			this.collider.moveBy(x, y);
-			
-			for (GameActor actor : GameActor.getList(this.getStage(), Collider.class)) {
-				Collider other = (Collider)actor;
-				if (this.collider.equals(other)) continue;
-				
-				adjustment.add(this.collider.preventOverlap(other));
-			}
-			
-			this.collider.moveBy(adjustment.x, adjustment.y);
-		}
-		
-		super.moveBy(x+adjustment.x, y+adjustment.y);
 	}
 	
 }

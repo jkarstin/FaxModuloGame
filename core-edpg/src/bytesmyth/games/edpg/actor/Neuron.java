@@ -10,10 +10,24 @@ import com.badlogic.gdx.utils.Align;
 
 public class Neuron extends GameActor {
 	
+	/*** Enumerations ***/
+	
+	public static enum DIRECTION {
+		Center,
+		Right,
+		UpRight,
+		Up,
+		UpLeft,
+		Left,
+		DownLeft,
+		Down,
+		DownRight
+	}
+	
 	/*** Fields ***/
 	
 	private int jumpLevel;
-	private int direction;
+	private DIRECTION direction;
 	private ArrayList<Animation<TextureRegion>> jumpFrames;
 	private GameActor neuronJump;
 	private GameActor returnPoint;
@@ -24,14 +38,16 @@ public class Neuron extends GameActor {
 		super(x, y);
 		
 		this.jumpLevel = 0;
-		this.direction = 0;
+		this.direction = DIRECTION.Center;
 		this.jumpFrames = new ArrayList<Animation<TextureRegion>>();
 		
 		this.neuronJump = new GameActor();
 		this.jumpFrames.add(neuronJump.loadTexture("neuron_jump_0.png"));
 		this.jumpFrames.add(neuronJump.loadTexture("neuron_jump_1.png"));
 		this.jumpFrames.add(neuronJump.loadTexture("neuron_jump_2.png"));
-		this.neuronJump.animator.setAnimation(this.jumpFrames.get(0));
+		this.jumpFrames.add(neuronJump.loadTexture("neuron_idle.png"));
+		this.neuronJump.animator.setAnimation(this.jumpFrames.get(3));
+		this.addActor(this.neuronJump);
 		
 		this.returnPoint = new GameActor();
 		this.returnPoint.loadTexture("return_point.png");
@@ -48,14 +64,17 @@ public class Neuron extends GameActor {
 		super(x, y, s);
 		
 		this.jumpLevel = 0;
-		this.direction = 0;
+		this.direction = DIRECTION.Center;
 		this.jumpFrames = new ArrayList<Animation<TextureRegion>>();
 		
 		this.neuronJump = new GameActor(s);
 		this.jumpFrames.add(neuronJump.loadTexture("neuron_jump_0.png"));
 		this.jumpFrames.add(neuronJump.loadTexture("neuron_jump_1.png"));
 		this.jumpFrames.add(neuronJump.loadTexture("neuron_jump_2.png"));
-		this.neuronJump.animator.setAnimation(this.jumpFrames.get(0));
+		this.jumpFrames.add(neuronJump.loadTexture("neuron_idle.png"));
+		this.neuronJump.animator.setAnimation(this.jumpFrames.get(3));
+		this.neuronJump.updateSize();
+		this.neuronJump.updateOrigin();
 		this.addActor(neuronJump);
 		
 		this.neuronJump.setPosition(-48f, -48f);
@@ -79,7 +98,7 @@ public class Neuron extends GameActor {
 		return this.jumpLevel;
 	}
 	
-	public int getDirection() {
+	public DIRECTION getDirection() {
 		return this.direction;
 	}
 	
@@ -109,8 +128,26 @@ public class Neuron extends GameActor {
 		this.updateReturnPoint();
 	}
 	
-	public void setDirection(int direction) {
-		this.direction = direction%8;
+	public void setDirection(DIRECTION dir) {
+		
+		this.direction = dir;
+		
+		if (dir == DIRECTION.Center) {
+			this.neuronJump.animator.setAnimation(this.jumpFrames.get(3));
+			this.neuronJump.updateSize();
+			this.neuronJump.updateOrigin();
+			
+			this.updateSize();
+			this.updateOrigin();
+		}
+		else {
+			this.neuronJump.animator.setAnimation(this.jumpFrames.get(this.jumpLevel));
+			this.neuronJump.updateSize();
+			this.neuronJump.updateOrigin();
+			
+			this.updateSize();
+			this.updateOrigin();
+		}
 		
 		this.updateRotation();
 	}
@@ -120,39 +157,89 @@ public class Neuron extends GameActor {
 		
 		if (directionVect.x > 0f) {
 			if (directionVect.y > 0f) {
-				this.setDirection(1);
+				this.setDirection(DIRECTION.UpRight);
 			}
 			else if (directionVect.y < 0f) {
-				this.setDirection(7);
+				this.setDirection(DIRECTION.DownRight);
 			}
 			else {
-				this.setDirection(0);
+				this.setDirection(DIRECTION.Right);
 			}
 		}
 		else if (directionVect.x < 0f) {
 			if (directionVect.y > 0f) {
-				this.setDirection(3);
+				this.setDirection(DIRECTION.UpLeft);
 			}
 			else if (directionVect.y < 0f) {
-				this.setDirection(5);
+				this.setDirection(DIRECTION.DownLeft);
 			}
 			else {
-				this.setDirection(4);
+				this.setDirection(DIRECTION.Left);
 			}
 		}
 		else {
 			if (directionVect.y > 0f) {
-				this.setDirection(2);
+				this.setDirection(DIRECTION.Up);
 			}
 			else if (directionVect.y < 0f) {
-				this.setDirection(6);
+				this.setDirection(DIRECTION.Down);
+			}
+			else {
+				this.setDirection(DIRECTION.Center);
 			}
 		}
 	}
 	
+	//Utility
+	
+	public void updateRotation() {
+		int dirCode = this.direction2int(this.direction);
+		if (dirCode < 0) this.setRotation(0f);
+		else this.setRotation(this.direction2int(this.direction) * 45f);
+		
+		this.updateReturnPoint();
+	}
+	
+	private void updateReturnPoint() {
+		if (this.direction == DIRECTION.Center) {
+			this.returnPoint.setPosition(48f, 48f, Align.center);
+			this.returnPoint.setVisible(false);
+		}
+		else {
+			this.returnPoint.setVisible(true);
+			this.returnPoint.setPosition(this.getWidth()-20f, 48f, Align.center);
+			this.returnPoint.setRotation(-this.getRotation());	
+		}
+	}
+	
+	private int direction2int(DIRECTION dir) {
+		switch (dir) {
+		case Right:
+			return 0;
+		case UpRight:
+			return 1;
+		case Up:
+			return 2;
+		case UpLeft:
+			return 3;
+		case Left:
+			return 4;
+		case DownLeft:
+			return 5;
+		case Down:
+			return 6;
+		case DownRight:
+			return 7;
+		default:
+			return -1;
+		}
+	}
+	
+	//Overridden (Inherited or Required)
+	
 	@Override
 	public void updateSize() {
-		TextureRegion tr = this.jumpFrames.get(this.jumpLevel).getKeyFrame(0f);
+		TextureRegion tr = this.neuronJump.animator.getKeyFrame(0f);
 		float w = tr.getRegionWidth();
 		float h = tr.getRegionHeight();
 		this.setSize(w, h);
@@ -160,16 +247,5 @@ public class Neuron extends GameActor {
 	
 	@Override
 	public void updateOrigin() { }
-	
-	public void updateRotation() {
-		this.setRotation(this.direction * 45f);
-		
-		this.updateReturnPoint();
-	}
-	
-	private void updateReturnPoint() {
-		this.returnPoint.setPosition(this.getWidth()-20f, 48f, Align.center);
-		this.returnPoint.setRotation(-this.getRotation());
-	}
 	
 }
