@@ -209,6 +209,14 @@ public class JexModem extends PhysObject {
 		else {
 			super.act(dt);
 			movementInputProcessing(dt);
+			
+			for (GameActor actor : GameActor.getList(this.getStage(), Portal.class)) {
+				Portal portal = (Portal)actor;
+				
+				if (this.collider.overlaps(portal.collider)) {
+					portal.loadNextScreen();
+				}
+			}
 		}
 	}
 	
