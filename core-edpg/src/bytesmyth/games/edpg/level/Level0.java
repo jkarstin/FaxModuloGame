@@ -1,8 +1,8 @@
 package bytesmyth.games.edpg.level;
 
-import bytesmyth.games.edpg.actor.JexModem;
-import bytesmyth.games.edpg.actor.Portal;
-import bytesmyth.games.edpg.actor.StaticObject;
+import bytesmyth.games.edpg.actor.object.JexModem;
+import bytesmyth.games.edpg.actor.object.Portal;
+import bytesmyth.games.edpg.actor.object.StaticObject;
 import bytesmyth.games.edpg.util.MetaData;
 
 public class Level0 extends LevelScreen {

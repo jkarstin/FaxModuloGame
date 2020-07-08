@@ -1,4 +1,4 @@
-package bytesmyth.games.edpg.actor;
+package bytesmyth.games.edpg.actor.object;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -8,6 +8,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Align;
 
+import bytesmyth.games.edpg.actor.GameActor;
+import bytesmyth.games.edpg.actor.Neuron;
 import bytesmyth.games.edpg.actor.Neuron.DIRECTION;
 
 public class JexModem extends PhysObject {
@@ -210,11 +212,11 @@ public class JexModem extends PhysObject {
 			super.act(dt);
 			movementInputProcessing(dt);
 			
-			for (GameActor actor : GameActor.getList(this.getStage(), Portal.class)) {
-				Portal portal = (Portal)actor;
+			for (GameActor actor : GameActor.getList(this.getStage(), Trigger.class)) {
+				Trigger trigger = (Trigger)actor;
 				
-				if (this.collider.overlaps(portal.collider)) {
-					portal.loadNextScreen();
+				if (this.collider.overlaps(trigger.collider)) {
+					trigger.activate();
 				}
 			}
 		}

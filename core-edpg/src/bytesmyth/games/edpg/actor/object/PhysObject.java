@@ -1,7 +1,11 @@
-package bytesmyth.games.edpg.actor;
+package bytesmyth.games.edpg.actor.object;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+
+import bytesmyth.games.edpg.actor.BoxCollider;
+import bytesmyth.games.edpg.actor.Collider;
+import bytesmyth.games.edpg.actor.GameActor;
 
 public class PhysObject extends GameObject {
 	
@@ -166,7 +170,7 @@ public class PhysObject extends GameObject {
 			
 			switch (obj.getObjectType()) {
 			case Physics:
-				PhysObject pobj = (PhysObject)obj;
+//				PhysObject pobj = (PhysObject)obj;
 				
 				//TODO: What happens upon physical interactions between PhysObjects?
 				

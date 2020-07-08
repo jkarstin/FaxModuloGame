@@ -1,6 +1,10 @@
-package bytesmyth.games.edpg.actor;
+package bytesmyth.games.edpg.actor.object;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
+
+import bytesmyth.games.edpg.actor.BoxCollider;
+import bytesmyth.games.edpg.actor.Collider;
+import bytesmyth.games.edpg.actor.GameActor;
 
 public class GameObject extends GameActor {
 	
@@ -8,6 +12,7 @@ public class GameObject extends GameActor {
 	
 	public static enum OBJECT_TYP {
 		Basic,
+		Trigger,
 		Physics,
 		Static
 	}
@@ -68,6 +73,7 @@ public class GameObject extends GameActor {
 	//Setters
 	
 	public void setCollider(Collider collider) {
+		if (this.collider != null) this.collider.remove();
 		this.collider = collider;
 		this.setSize(collider.getWidth(), collider.getHeight());
 		this.collider.setPosition(this.getX(), this.getY());

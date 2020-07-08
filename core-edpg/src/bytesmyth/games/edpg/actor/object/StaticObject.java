@@ -1,4 +1,4 @@
-package bytesmyth.games.edpg.actor;
+package bytesmyth.games.edpg.actor.object;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
