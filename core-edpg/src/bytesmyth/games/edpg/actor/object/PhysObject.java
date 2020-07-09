@@ -127,6 +127,11 @@ public class PhysObject extends GameObject {
 		return this.applyGravity && !this.grounded;
 	}
 	
+	protected void setGrounded() {
+		this.grounded = true;
+		this.setVelocity(new Vector2(this.velocity.x, -GROUNDING_DISTANCE*15f));
+	}
+	
 	//Overridden (Inherited or Required)
 	
 	@Override
@@ -161,8 +166,7 @@ public class PhysObject extends GameObject {
 			if (!groundCheck && this.groundDetector.overlaps(obj.collider)) groundCheck = true;
 			
 			if (this.isFalling() && this.groundDetector.overlaps(obj.collider)) {
-				this.grounded = true;
-				this.setVelocity(new Vector2(this.velocity.x, -GROUNDING_DISTANCE*15f));
+				this.setGrounded();
 			}
 			
 			Vector2 adjustment = this.collider.preventOverlap(obj.collider);

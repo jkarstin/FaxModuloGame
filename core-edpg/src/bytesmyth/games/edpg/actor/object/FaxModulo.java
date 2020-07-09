@@ -9,12 +9,16 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Align;
 
 import bytesmyth.games.edpg.actor.GameActor;
+import bytesmyth.games.edpg.actor.HUD;
 import bytesmyth.games.edpg.actor.Neuron;
 import bytesmyth.games.edpg.actor.Neuron.DIRECTION;
+import bytesmyth.games.edpg.util.MetaData;
 
-public class JexModem extends PhysObject {
+public class FaxModulo extends PhysObject {
 	
 	/*** Fields ***/
+	
+	private HUD hud;
 	
 	private float moveSpeed = 150f;
 	private Animation<TextureRegion> idleAnim, walkAnim;
@@ -24,7 +28,7 @@ public class JexModem extends PhysObject {
 	
 	/*** Constructors ***/
 	
-	public JexModem(float x, float y) {
+	public FaxModulo(float x, float y) {
 		super(0f, 0f);
 		
 		this.loadAnimations();
@@ -35,10 +39,12 @@ public class JexModem extends PhysObject {
 		this.neuron = new Neuron();
 		this.neuron.setVisible(false);
 		this.neuronMode = false;
+		
+		this.hud = new HUD();
 	}
-	public JexModem() { this(0f, 0f); }
+	public FaxModulo() { this(0f, 0f); }
 
-	public JexModem(float x, float y, Stage s) {
+	public FaxModulo(float x, float y, Stage s, Stage ui) {
 		super(0f, 0f, s);
 		
 		this.loadAnimations();
@@ -49,8 +55,10 @@ public class JexModem extends PhysObject {
 		this.neuron = new Neuron(s);
 		this.neuron.setVisible(false);
 		this.neuronMode = false;
+		
+		this.hud = new HUD(ui);
 	}
-	public JexModem(Stage s) { this(0f, 0f, s); }
+	public FaxModulo(Stage s, Stage ui) { this(0f, 0f, s, ui); }
 	
 	/*** Methods ***/
 	
@@ -70,6 +78,9 @@ public class JexModem extends PhysObject {
 			this.setPosition(this.neuron.getReturnPoint().x, this.neuron.getReturnPoint().y, Align.center);
 			this.neuron.setVisible(false);
 			this.neuron.setDirection(DIRECTION.Center);
+			
+			this.hud.setJumps(this.hud.getJumps()-1);
+			
 			this.animator.resume();
 		}
 		
@@ -145,7 +156,7 @@ public class JexModem extends PhysObject {
 		boolean walking = false;
 		Vector2 tmp = new Vector2();
 		
-		if (Gdx.input.isKeyJustPressed(Input.Keys.TAB)) {
+		if (Gdx.input.isKeyJustPressed(Input.Keys.TAB) && this.hud.getJumps() > 0) {
 			this.neuronMode = true;
 			this.neuron.setPosition(this.getX(Align.center), this.getY(Align.center));
 			this.neuron.setVisible(true);
@@ -220,6 +231,13 @@ public class JexModem extends PhysObject {
 				}
 			}
 		}
+	}
+	
+	@Override
+	protected void setGrounded() {
+		super.setGrounded();
+		
+		this.hud.setJumps(3);
 	}
 	
 	@Override
