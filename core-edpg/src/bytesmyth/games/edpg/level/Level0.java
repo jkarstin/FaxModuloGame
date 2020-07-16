@@ -1,20 +1,28 @@
 package bytesmyth.games.edpg.level;
 
+import bytesmyth.games.edpg.actor.GameActor;
 import bytesmyth.games.edpg.actor.object.FaxModulo;
 import bytesmyth.games.edpg.actor.object.Portal;
 import bytesmyth.games.edpg.actor.object.StaticObject;
-import bytesmyth.games.edpg.util.MetaData;
 
 public class Level0 extends LevelScreen {
 	
 	@Override
 	public void initialize() {
-		new StaticObject(0f, -100f, 800f, 120f, this.mainStage);
-		new StaticObject(710f, 50f, 50f, 50f, this.mainStage);
+		(new GameActor(this.mainStage)).loadTexture("Level0.png");
 		
-		new Portal(Level0.class, 400f, 300f, this.mainStage);
+		new StaticObject(-5000f, -5000f, 10800f, 5000f, this.mainStage);
+		new StaticObject(-5000f, 6000f, 10800f, 5000f, this.mainStage);
+		new StaticObject(-5000f, 0f, 5000f, 6000f, this.mainStage);
+		new StaticObject(800f, 0f, 5000f, 6000f, this.mainStage);
+		new StaticObject(375f, 0f, 50f, 6000f, this.mainStage);
+		new StaticObject(0f, 500f, 800f, 50f, this.mainStage);
+		new StaticObject(0f, 1500f, 600f, 50f, this.mainStage);
+		new StaticObject(200f, 3000f, 600f, 50f, this.mainStage);
 		
-		new FaxModulo(MetaData.VIRTUAL_WIDTH/2f, 22f, this.mainStage, this.uiStage);
+		new Portal(Level0.class, 600f, 4000f, this.mainStage);
+		
+		new FaxModulo(100f, 2f, this.mainStage, this.uiStage);
 	}
 
 	@Override

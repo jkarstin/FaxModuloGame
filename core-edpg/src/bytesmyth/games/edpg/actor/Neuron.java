@@ -102,6 +102,42 @@ public class Neuron extends GameActor {
 		return this.direction;
 	}
 	
+	public Vector2 getDirectionVector() {
+		Vector2 tmp = new Vector2();
+		
+		switch (this.direction) {
+		case Right:
+			tmp.set(1f, 0f);
+			break;
+		case UpRight:
+			tmp.set(1f, 1f).nor();
+			break;
+		case Up:
+			tmp.set(0f, 1f);
+			break;
+		case UpLeft:
+			tmp.set(-1f, 1f).nor();
+			break;
+		case Left:
+			tmp.set(-1f, 0f);
+			break;
+		case DownLeft:
+			tmp.set(-1f, -1f).nor();
+			break;
+		case Down:
+			tmp.set(0f, -1f);
+			break;
+		case DownRight:
+			tmp.set(1f, -1f).nor();
+			break;
+		case Center:
+		default:
+			return Vector2.Zero;
+		}
+		
+		return tmp;
+	}
+	
 	public Vector2 getReturnPoint() {
 		Vector2 tmp = new Vector2();
 		Vector2 rPoint = new Vector2();

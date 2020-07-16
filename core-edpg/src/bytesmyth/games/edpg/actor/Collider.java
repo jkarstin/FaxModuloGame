@@ -35,6 +35,8 @@ public abstract class Collider extends GameActor {
 		this.loadAnimations();
 		
 		this.setSize(width, height);
+		
+		this.setDebug(MetaData.SHOW_WIREFRAMES);
 	}
 	public Collider(SHAPE_TYP type) { this(type, 0f, 0f, 50f, 50f); }
 	
@@ -47,6 +49,8 @@ public abstract class Collider extends GameActor {
 		this.loadAnimations();
 		
 		this.setSize(width, height);
+		
+		this.setDebug(MetaData.SHOW_WIREFRAMES);
 	}
 	public Collider(SHAPE_TYP type, Stage s) { this(type, 0f, 0f, 50f, 50f, s); }
 	
@@ -158,17 +162,8 @@ public abstract class Collider extends GameActor {
 	
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		super.draw(batch, parentAlpha);
-		
-		if (this.isVisible() && MetaData.SHOW_WIREFRAMES) {
-			batch.draw(
-				this.animator.getCurrentFrame(),
-				this.getX(), this.getY(),
-				this.getOriginX(), this.getOriginY(),
-				this.getWidth(), this.getHeight(),
-				this.getScaleX(), this.getScaleY(),
-				this.getRotation()
-				);
+		if (MetaData.SHOW_WIREFRAMES) {
+			super.draw(batch, parentAlpha);
 		}
 	}
 	

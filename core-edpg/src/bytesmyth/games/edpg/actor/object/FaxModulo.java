@@ -12,7 +12,6 @@ import bytesmyth.games.edpg.actor.GameActor;
 import bytesmyth.games.edpg.actor.HUD;
 import bytesmyth.games.edpg.actor.Neuron;
 import bytesmyth.games.edpg.actor.Neuron.DIRECTION;
-import bytesmyth.games.edpg.util.MetaData;
 
 public class FaxModulo extends PhysObject {
 	
@@ -76,6 +75,7 @@ public class FaxModulo extends PhysObject {
 		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 			this.neuronMode = false;
 			this.setPosition(this.neuron.getReturnPoint().x, this.neuron.getReturnPoint().y, Align.center);
+			this.setVelocity(this.neuron.getDirectionVector().scl(500f));
 			this.neuron.setVisible(false);
 			this.neuron.setDirection(DIRECTION.Center);
 			
@@ -221,6 +221,10 @@ public class FaxModulo extends PhysObject {
 		}
 		else {
 			super.act(dt);
+			
+			this.getStage().getCamera().position.x = this.getX(Align.center);
+			this.getStage().getCamera().position.y = this.getY(Align.center);
+			
 			movementInputProcessing(dt);
 			
 			for (GameActor actor : GameActor.getList(this.getStage(), Trigger.class)) {
