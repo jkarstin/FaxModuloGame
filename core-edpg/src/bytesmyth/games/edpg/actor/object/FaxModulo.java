@@ -84,10 +84,7 @@ public class FaxModulo extends PhysObject {
 			this.setVelocity(this.neuron.getDirectionVector().scl(500f));
 			this.neuron.setVisible(false);
 			this.neuron.setDirection(DIRECTION.Center);
-			
-			if (!this.grounded)
-				this.hud.setJumps(this.hud.getJumps()-1);
-			
+			this.hud.setJumps(this.hud.getJumps()-1);
 			this.animator.resume();
 		}
 		
