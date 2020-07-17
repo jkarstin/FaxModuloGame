@@ -1,0 +1,131 @@
+{
+com.badlogic.gdx.graphics.g2d.BitmapFont: {
+	a-bot-and-his-d0g: {
+		file: a-bot-and-his-d0g.fnt
+	}
+}
+com.badlogic.gdx.graphics.Color: {
+	black: {
+		r: 0
+		g: 0
+		b: 0
+		a: 1
+	}
+	half-red: {
+		r: 0.5
+		g: 0
+		b: 0
+		a: 1
+	}
+	white: {
+		r: 1
+		g: 1
+		b: 1
+		a: 1
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
+	default: {
+		up: button
+		down: button_down
+		over: button_over
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
+	default: {
+		checkboxOn: button_down
+		checkboxOff: button
+		checkboxOnOver: button_down
+		checkboxOver: button_over
+		font: a-bot-and-his-d0g
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
+	default: {
+		font: a-bot-and-his-d0g
+		fontColor: black
+		background: button
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
+	default: {
+		font: a-bot-and-his-d0g
+		fontColorSelected: black
+		fontColorUnselected: black
+		selection: button_over
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
+	default-horizontal: {
+		background: button
+		knob: button_over
+		knobBefore: button_down
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
+	default: {
+		background: button
+		hScroll: button
+		hScrollKnob: button_over
+		vScroll: button
+		vScrollKnob: button_over
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle: {
+	default: {
+		font: a-bot-and-his-d0g
+		fontColor: black
+		background: button
+		scrollStyle: default
+		listStyle: default
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {
+	default-horizontal: {
+		background: button
+		knob: button_over
+		knobBefore: button_down
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.SplitPane$SplitPaneStyle: {
+	default-horizontal: {
+		handle: button_down
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
+	default: {
+		font: a-bot-and-his-d0g
+		up: button
+		down: button_down
+		over: button_over
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
+	default: {
+		font: a-bot-and-his-d0g
+		fontColor: black
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle: {
+	default: {
+		label: default
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Touchpad$TouchpadStyle: {
+	default: {
+		background: button
+		knob: button_over
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Tree$TreeStyle: {
+	default: {
+		plus: button
+		minus: button_over
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
+	default: {
+		titleFont: a-bot-and-his-d0g
+	}
+}
+}

@@ -1,0 +1,37 @@
+
+uiskin.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+a-bot-and-his-d0g
+  rotate: false
+  xy: 1, 483
+  size: 504, 20
+  orig: 504, 20
+  offset: 0, 0
+  index: -1
+button
+  rotate: false
+  xy: 1, 461
+  size: 20, 20
+  split: 7, 7, 7, 7
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+button_down
+  rotate: false
+  xy: 1, 439
+  size: 20, 20
+  split: 7, 7, 7, 7
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+button_over
+  rotate: false
+  xy: 23, 461
+  size: 20, 20
+  split: 7, 7, 7, 7
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
