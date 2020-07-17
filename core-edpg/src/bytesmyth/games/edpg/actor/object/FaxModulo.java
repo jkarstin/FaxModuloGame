@@ -61,6 +61,12 @@ public class FaxModulo extends PhysObject {
 	
 	/*** Methods ***/
 	
+	//Mechanics
+	
+	public void collect(Dopamine dp) {
+		this.hud.setJumps(this.hud.getJumps()+1);
+	}
+	
 	//Player input
 	
 	private void neuronModeInputProcessing() {
@@ -78,9 +84,7 @@ public class FaxModulo extends PhysObject {
 			this.setVelocity(this.neuron.getDirectionVector().scl(500f));
 			this.neuron.setVisible(false);
 			this.neuron.setDirection(DIRECTION.Center);
-			
 			this.hud.setJumps(this.hud.getJumps()-1);
-			
 			this.animator.resume();
 		}
 		
@@ -237,7 +241,7 @@ public class FaxModulo extends PhysObject {
 				Trigger trigger = (Trigger)actor;
 				
 				if (this.collider.overlaps(trigger.collider)) {
-					trigger.activate();
+					trigger.activate(this);
 				}
 			}
 		}

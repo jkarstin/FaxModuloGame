@@ -29,7 +29,7 @@ public class Portal extends Trigger {
 	}
 	public Portal(Class<? extends Screen> screen, Stage s) { this(screen, 0f, 0f, s); }
 	
-	public boolean activate() {
+	public boolean activate(FaxModulo fm) {
 		try {
 			ExecDysfuncPlatformer.setActiveScreen(this.nextScreen.newInstance());
 			return true;

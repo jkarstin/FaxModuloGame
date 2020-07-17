@@ -28,6 +28,6 @@ public abstract class Trigger extends GameObject {
 	}
 	public Trigger(Stage s) { this(0f, 0f, s); }
 	
-	public abstract boolean activate();
+	public abstract boolean activate(FaxModulo fm);
 	
 }

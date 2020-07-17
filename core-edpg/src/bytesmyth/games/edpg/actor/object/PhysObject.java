@@ -163,12 +163,6 @@ public class PhysObject extends GameObject {
 			
 			GameObject obj = (GameObject)actor;
 			
-			if (!groundCheck && this.groundDetector.overlaps(obj.collider)) groundCheck = true;
-			
-			if (this.isFalling() && this.groundDetector.overlaps(obj.collider)) {
-				this.setGrounded();
-			}
-			
 			Vector2 adjustment = this.collider.preventOverlap(obj.collider);
 			this.moveBy(adjustment.x, adjustment.y);
 			
@@ -191,9 +185,15 @@ public class PhysObject extends GameObject {
 					this.velocity.y = 0f;
 				}
 				
+				if (!groundCheck && this.groundDetector.overlaps(obj.collider)) groundCheck = true;
+				
+				if (this.isFalling() && this.groundDetector.overlaps(obj.collider)) {
+					this.setGrounded();
+				}
+				
 				break;
 				
-				
+			case Trigger:
 			default:
 				break;
 			}
