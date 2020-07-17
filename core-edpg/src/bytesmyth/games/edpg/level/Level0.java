@@ -1,6 +1,7 @@
 package bytesmyth.games.edpg.level;
 
 import bytesmyth.games.edpg.actor.GameActor;
+import bytesmyth.games.edpg.actor.object.Dopamine;
 import bytesmyth.games.edpg.actor.object.FaxModulo;
 import bytesmyth.games.edpg.actor.object.Portal;
 import bytesmyth.games.edpg.actor.object.StaticObject;
@@ -21,6 +22,8 @@ public class Level0 extends LevelScreen {
 		new StaticObject(200f, 3000f, 600f, 50f, this.mainStage);
 		
 		new Portal(Level0.class, 600f, 4000f, this.mainStage);
+		
+		new Dopamine(100f, 800f, this.mainStage);
 		
 		new FaxModulo(100f, 2f, this.mainStage, this.uiStage);
 	}
