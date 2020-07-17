@@ -65,7 +65,7 @@ public class FaxModulo extends PhysObject {
 	
 	private void neuronModeInputProcessing() {
 		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) ||
-			Gdx.input.isKeyJustPressed(Input.Keys.TAB)) {
+			Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT)) {
 			this.neuronMode = false;
 			this.neuron.setVisible(false);
 			this.neuron.setDirection(DIRECTION.Center);
@@ -84,7 +84,8 @@ public class FaxModulo extends PhysObject {
 			this.animator.resume();
 		}
 		
-		if (Gdx.input.isKeyJustPressed(Input.Keys.D)) {
+		if (Gdx.input.isKeyJustPressed(Input.Keys.D) ||
+				Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
 			switch (this.neuron.getDirection()) {
 			case Up:
 			case UpLeft:
@@ -99,7 +100,8 @@ public class FaxModulo extends PhysObject {
 				break;
 			}
 		}
-		if (Gdx.input.isKeyJustPressed(Input.Keys.A)) {
+		if (Gdx.input.isKeyJustPressed(Input.Keys.A) ||
+				Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
 			switch (this.neuron.getDirection()) {
 			case Up:
 			case UpRight:
@@ -114,7 +116,8 @@ public class FaxModulo extends PhysObject {
 				break;
 			}
 		}
-		if (Gdx.input.isKeyJustPressed(Input.Keys.W)) {
+		if (Gdx.input.isKeyJustPressed(Input.Keys.W) ||
+				Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
 			switch (this.neuron.getDirection()) {
 			case Right:
 			case DownRight:
@@ -129,7 +132,8 @@ public class FaxModulo extends PhysObject {
 				break;
 			}
 		}
-		if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
+		if (Gdx.input.isKeyJustPressed(Input.Keys.S) ||
+				Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
 			switch (this.neuron.getDirection()) {
 			case Right:
 			case UpRight:
@@ -156,7 +160,7 @@ public class FaxModulo extends PhysObject {
 		boolean walking = false;
 		Vector2 tmp = new Vector2();
 		
-		if (Gdx.input.isKeyJustPressed(Input.Keys.TAB) && this.hud.getJumps() > 0) {
+		if (Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT) && this.hud.getJumps() > 0) {
 			this.neuronMode = true;
 			this.neuron.setPosition(this.getX(Align.center), this.getY(Align.center));
 			this.neuron.setVisible(true);
@@ -164,11 +168,13 @@ public class FaxModulo extends PhysObject {
 			return;
 		}
 		
-		if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+		if (Gdx.input.isKeyPressed(Input.Keys.D) ||
+				Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
 			moveVector.add(tmp.set(Vector2.X).scl(this.moveSpeed));
 			walking = !walking;
 		}
-		if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+		if (Gdx.input.isKeyPressed(Input.Keys.A) ||
+				Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
 			moveVector.add(tmp.set(Vector2.X).scl(-this.moveSpeed));
 			walking = !walking;
 		}
