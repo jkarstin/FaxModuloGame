@@ -27,29 +27,6 @@ public class PhysObject extends GameObject {
 	
 	/*** Constructors ***/
 	
-	public PhysObject(float x, float y, float width, float height) {
-		super(OBJECT_TYP.Physics, x, y, width, height);
-		
-		this.velocity = new Vector2();
-		this.acceleration = new Vector2();
-		this.frictionCoef = 0f;
-		this.mass = 1f;
-		
-		this.applyGravity = true;
-		this.grounded = false;
-		this.groundDetector = new BoxCollider(
-				x+GROUNDING_LATERAL_PADDING,
-				y-GROUNDING_DISTANCE,
-				50f-(2*GROUNDING_LATERAL_PADDING),
-				GROUNDING_DISTANCE
-				);
-		this.groundDetector.setPhysical(false);
-	}
-	public PhysObject(float x, float y) {
-		this(x, y, 50f, 50f);
-	}
-	public PhysObject() { this(0f, 0f); }
-	
 	public PhysObject(float x, float y, float width, float height, Stage s) {
 		super(OBJECT_TYP.Physics, x, y, width, height, s);
 		

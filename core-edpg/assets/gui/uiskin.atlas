@@ -6,14 +6,21 @@ filter: Linear,Linear
 repeat: none
 a-bot-and-his-d0g
   rotate: false
-  xy: 1, 483
+  xy: 1, 419
   size: 504, 20
   orig: 504, 20
   offset: 0, 0
   index: -1
+arial
+  rotate: false
+  xy: 1, 441
+  size: 506, 64
+  orig: 506, 64
+  offset: 0, 0
+  index: -1
 button
   rotate: false
-  xy: 1, 461
+  xy: 1, 397
   size: 20, 20
   split: 7, 7, 7, 7
   orig: 20, 20
@@ -21,7 +28,7 @@ button
   index: -1
 button_down
   rotate: false
-  xy: 1, 439
+  xy: 1, 375
   size: 20, 20
   split: 7, 7, 7, 7
   orig: 20, 20
@@ -29,7 +36,7 @@ button_down
   index: -1
 button_over
   rotate: false
-  xy: 23, 461
+  xy: 23, 397
   size: 20, 20
   split: 7, 7, 7, 7
   orig: 20, 20

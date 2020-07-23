@@ -24,25 +24,10 @@ public class GameObject extends GameActor {
 	
 	/*** Constructors ***/
 	
-	public GameObject(OBJECT_TYP type, float x, float y, float width, float height) {
-		super(x, y);
-		
-		this.type = type;
-		this.collider = new BoxCollider(x, y, width, height);
-	}
-	public GameObject(OBJECT_TYP type, float x, float y) {
-		this(type, x, y, 50f, 50);
-	}
-	public GameObject(float x, float y, float width, float height) {
-		this(OBJECT_TYP.Basic, x, y, width, height);
-	}
-	public GameObject(float x, float y) {
-		this(OBJECT_TYP.Basic, x, y);
-	}
-	public GameObject() { this(0f, 0f); }
-	
 	public GameObject(OBJECT_TYP type, float x, float y, float width, float height, Stage s) {
 		super(x, y, s);
+		
+		this.setSize(width, height);
 		
 		this.type = type;
 		this.collider = new BoxCollider(x, y, width, height, s);

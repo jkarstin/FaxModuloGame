@@ -12,13 +12,11 @@ public class WinScreen extends BasicScreen {
 		(new GameActor(this.stage)).loadTexture("fax_modulo_title_white.png");
 		
 		this.stage.addAction(
-				Actions.delay(
-						10f,
-						Actions.run(
-								() -> {
-									ExecDysfuncPlatformer.setActiveScreen(new StartScreen());
-									}
-								)
+				Actions.sequence(
+						Actions.delay(10f),
+						Actions.run(()->{
+							ExecDysfuncPlatformer.setActiveScreen(new StartScreen());
+							})
 						)
 				);
 	}

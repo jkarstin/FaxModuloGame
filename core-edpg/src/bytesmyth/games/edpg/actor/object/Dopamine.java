@@ -2,18 +2,14 @@ package bytesmyth.games.edpg.actor.object;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
+import bytesmyth.games.edpg.actor.RoundCollider;
+
 public class Dopamine extends Trigger {
 
-	public Dopamine(float x, float y) {
-		super(x, y);
-		
-		this.loadTexture("dopamine.png");
-		this.setSize(this.animator.getKeyFrame(0f).getRegionWidth(), this.animator.getKeyFrame(0f).getRegionHeight());
-	}
-	public Dopamine() { this(0f, 0f); }
-	
 	public Dopamine(float x, float y, Stage s) {
 		super(x, y, s);
+		
+		this.setCollider(new RoundCollider(x, y, 50f, 50f, s));
 		
 		this.loadTexture("dopamine.png");
 		this.setSize(this.animator.getKeyFrame(0f).getRegionWidth(), this.animator.getKeyFrame(0f).getRegionHeight());
@@ -21,14 +17,13 @@ public class Dopamine extends Trigger {
 	public Dopamine(Stage s) { this(0f, 0f, s); }
 
 	@Override
-	public boolean activate(FaxModulo fm) {
-		if (fm == null) return false;
-		
-		fm.collect(this);
+	public boolean activate() {
 		this.collider.remove();
 		this.remove();
-		
-		return false;
+		return true;		
 	}
+	
+	@Override
+	public boolean deactivate() { return true; }
 
 }

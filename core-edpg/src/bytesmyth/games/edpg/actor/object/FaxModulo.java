@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Align;
 
-import bytesmyth.games.edpg.actor.GameActor;
 import bytesmyth.games.edpg.actor.HUD;
 import bytesmyth.games.edpg.actor.Neuron;
 import bytesmyth.games.edpg.actor.Neuron.DIRECTION;
@@ -27,22 +26,6 @@ public class FaxModulo extends PhysObject {
 	
 	/*** Constructors ***/
 	
-	public FaxModulo(float x, float y) {
-		super(0f, 0f);
-		
-		this.loadAnimations();
-		this.setPosition(x, y);
-		this.velocity.y = -GROUNDING_DISTANCE*15f;
-		this.grounded = true;
-		
-		this.neuron = new Neuron();
-		this.neuron.setVisible(false);
-		this.neuronMode = false;
-		
-		this.hud = new HUD();
-	}
-	public FaxModulo() { this(0f, 0f); }
-
 	public FaxModulo(float x, float y, Stage s, Stage ui) {
 		super(0f, 0f, s);
 		
@@ -65,6 +48,20 @@ public class FaxModulo extends PhysObject {
 	
 	public void collect(Dopamine dp) {
 		this.hud.setJumps(this.hud.getJumps()+1);
+	}
+	
+	public void justActivated(Trigger trigger) {
+		if (trigger == null) return;
+		
+		if (Dopamine.class.isInstance(trigger)) {
+			this.collect((Dopamine)trigger);
+		}
+	}
+	
+	public void justDeactivated(Trigger trigger) {
+		if (trigger == null) return;
+		
+		
 	}
 	
 	//Player input
@@ -236,14 +233,6 @@ public class FaxModulo extends PhysObject {
 			this.getStage().getCamera().position.y = this.getY(Align.center);
 			
 			movementInputProcessing(dt);
-			
-			for (GameActor actor : GameActor.getList(this.getStage(), Trigger.class)) {
-				Trigger trigger = (Trigger)actor;
-				
-				if (this.collider.overlaps(trigger.collider)) {
-					trigger.activate(this);
-				}
-			}
 		}
 	}
 	

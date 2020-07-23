@@ -72,6 +72,23 @@ atlasData: {
 			customized: false
 			tenPatchData: null
 		}
+		{
+			file: C:/Users/karst/Documents/LibGDX/ExecDysfuncPlatformer/core-edpg/assets/gui/arial.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: arial
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
 	]
 }
 jsonData: {
@@ -112,6 +129,11 @@ jsonData: {
 			class: com.ray3k.skincomposer.data.FontData
 			name: a-bot-and-his-d0g
 			file: C:/Users/karst/Documents/LibGDX/ExecDysfuncPlatformer/core-edpg/assets/gui/a-bot-and-his-d0g/a-bot-and-his-d0g.fnt
+		}
+		{
+			class: com.ray3k.skincomposer.data.FontData
+			name: arial
+			file: C:/Users/karst/Documents/LibGDX/ExecDysfuncPlatformer/core-edpg/assets/gui/arial.fnt
 		}
 	]
 	freeTypeFonts: []
@@ -278,14 +300,14 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: a-bot-and-his-d0g
+						value: arial
 					}
 					fontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
 						type: com.badlogic.gdx.graphics.Color
 						name: fontColor
 						optional: true
-						value: null
+						value: black
 					}
 					downFontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -787,7 +809,7 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: a-bot-and-his-d0g
+						value: arial
 					}
 					fontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -819,14 +841,14 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: a-bot-and-his-d0g
+						value: arial
 					}
 					fontColorSelected: {
 						class: com.ray3k.skincomposer.data.StyleProperty
 						type: com.badlogic.gdx.graphics.Color
 						name: fontColorSelected
 						optional: false
-						value: black
+						value: white
 					}
 					fontColorUnselected: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -840,7 +862,7 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: selection
 						optional: false
-						value: button_over
+						value: button_down
 					}
 					down: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -944,7 +966,7 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: background
 						optional: false
-						value: null
+						value: button
 					}
 					disabledBackground: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -958,7 +980,7 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: knob
 						optional: true
-						value: null
+						value: button_over
 					}
 					disabledKnob: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -972,7 +994,7 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: knobBefore
 						optional: true
-						value: null
+						value: button_down
 					}
 					knobAfter: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -1064,7 +1086,7 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: a-bot-and-his-d0g
+						value: arial
 					}
 					fontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -1231,7 +1253,7 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: background
 						optional: false
-						value: null
+						value: button
 					}
 					disabledBackground: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -1245,7 +1267,7 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: knob
 						optional: true
-						value: null
+						value: button_over
 					}
 					disabledKnob: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -1259,7 +1281,7 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: knobBefore
 						optional: true
-						value: null
+						value: button_down
 					}
 					knobAfter: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -1314,7 +1336,7 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: handle
 						optional: false
-						value: null
+						value: button_down
 					}
 				}
 				deletable: false
@@ -1332,28 +1354,28 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: a-bot-and-his-d0g
+						value: arial
 					}
 					fontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
 						type: com.badlogic.gdx.graphics.Color
 						name: fontColor
 						optional: true
-						value: null
+						value: black
 					}
 					downFontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
 						type: com.badlogic.gdx.graphics.Color
 						name: downFontColor
 						optional: true
-						value: null
+						value: white
 					}
 					overFontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
 						type: com.badlogic.gdx.graphics.Color
 						name: overFontColor
 						optional: true
-						value: null
+						value: black
 					}
 					checkedFontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -1490,7 +1512,7 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: a-bot-and-his-d0g
+						value: arial
 					}
 					fontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -1702,14 +1724,14 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: titleFont
 						optional: false
-						value: a-bot-and-his-d0g
+						value: arial
 					}
 					titleFontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
 						type: com.badlogic.gdx.graphics.Color
 						name: titleFontColor
 						optional: true
-						value: null
+						value: black
 					}
 					stageBackground: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -1730,6 +1752,10 @@ preferences: {
 	maxUndos: {
 		class: java.lang.Integer
 		value: 30
+	}
+	last-import-export-path: {
+		class: java.lang.String
+		value: C:/Users/karst/Documents/LibGDX/ExecDysfuncPlatformer/core-edpg/assets/gui/uiskin.json
 	}
 	id: {
 		class: java.lang.Integer

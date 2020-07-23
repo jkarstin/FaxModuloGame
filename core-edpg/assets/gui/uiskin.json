@@ -3,6 +3,9 @@ com.badlogic.gdx.graphics.g2d.BitmapFont: {
 	a-bot-and-his-d0g: {
 		file: a-bot-and-his-d0g.fnt
 	}
+	arial: {
+		file: arial.fnt
+	}
 }
 com.badlogic.gdx.graphics.Color: {
 	black: {
@@ -37,26 +40,32 @@ com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
 		checkboxOff: button
 		checkboxOnOver: button_down
 		checkboxOver: button_over
-		font: a-bot-and-his-d0g
+		font: arial
+		fontColor: black
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	default: {
-		font: a-bot-and-his-d0g
+		font: arial
 		fontColor: black
 		background: button
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
 	default: {
-		font: a-bot-and-his-d0g
-		fontColorSelected: black
+		font: arial
+		fontColorSelected: white
 		fontColorUnselected: black
-		selection: button_over
+		selection: button_down
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
 	default-horizontal: {
+		background: button
+		knob: button_over
+		knobBefore: button_down
+	}
+	default-vertical: {
 		background: button
 		knob: button_over
 		knobBefore: button_down
@@ -73,7 +82,7 @@ com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle: {
 	default: {
-		font: a-bot-and-his-d0g
+		font: arial
 		fontColor: black
 		background: button
 		scrollStyle: default
@@ -86,15 +95,26 @@ com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {
 		knob: button_over
 		knobBefore: button_down
 	}
+	default-vertical: {
+		background: button
+		knob: button_over
+		knobBefore: button_down
+	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.SplitPane$SplitPaneStyle: {
 	default-horizontal: {
 		handle: button_down
 	}
+	default-vertical: {
+		handle: button_down
+	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 	default: {
-		font: a-bot-and-his-d0g
+		font: arial
+		fontColor: black
+		downFontColor: white
+		overFontColor: black
 		up: button
 		down: button_down
 		over: button_over
@@ -102,7 +122,7 @@ com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
 	default: {
-		font: a-bot-and-his-d0g
+		font: arial
 		fontColor: black
 	}
 }
@@ -125,7 +145,8 @@ com.badlogic.gdx.scenes.scene2d.ui.Tree$TreeStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
 	default: {
-		titleFont: a-bot-and-his-d0g
+		titleFont: arial
+		titleFontColor: black
 	}
 }
 }

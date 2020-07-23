@@ -3,6 +3,7 @@ package bytesmyth.games.edpg.level;
 import bytesmyth.games.edpg.actor.GameActor;
 import bytesmyth.games.edpg.actor.object.Dopamine;
 import bytesmyth.games.edpg.actor.object.FaxModulo;
+import bytesmyth.games.edpg.actor.object.InfoBox;
 import bytesmyth.games.edpg.actor.object.Portal;
 import bytesmyth.games.edpg.actor.object.StaticObject;
 import bytesmyth.games.edpg.screen.WinScreen;
@@ -27,6 +28,8 @@ public class Level0 extends LevelScreen {
 		new Dopamine(100f, 800f, this.mainStage);
 		
 		new FaxModulo(100f, 2f, this.mainStage, this.uiStage);
+		
+		new InfoBox("SHIFT", 300f, 0f, 20f, 175f, this.mainStage);
 	}
 
 	@Override
