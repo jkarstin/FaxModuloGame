@@ -1,5 +1,7 @@
 package bytesmyth.games.edpg.actor.object;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -24,6 +26,8 @@ public class FaxModulo extends PhysObject {
 	private Neuron neuron;
 	private boolean neuronMode;
 	
+	private ArrayList<Trigger> activeTriggers;
+	
 	/*** Constructors ***/
 	
 	public FaxModulo(float x, float y, Stage s, Stage ui) {
@@ -39,6 +43,8 @@ public class FaxModulo extends PhysObject {
 		this.neuronMode = false;
 		
 		this.hud = new HUD(ui);
+		
+		this.activeTriggers = new ArrayList<Trigger>();
 	}
 	public FaxModulo(Stage s, Stage ui) { this(0f, 0f, s, ui); }
 	
@@ -50,18 +56,22 @@ public class FaxModulo extends PhysObject {
 		this.hud.setJumps(this.hud.getJumps()+1);
 	}
 	
+	//Called by a Trigger the moment FaxModulo overlaps with it
 	public void justActivated(Trigger trigger) {
 		if (trigger == null) return;
+		
+		this.activeTriggers.add(trigger);
 		
 		if (Dopamine.class.isInstance(trigger)) {
 			this.collect((Dopamine)trigger);
 		}
 	}
 	
+	//Called by a Trigger the moment FaxModulo stops overlapping with it
 	public void justDeactivated(Trigger trigger) {
 		if (trigger == null) return;
 		
-		
+		this.activeTriggers.remove(trigger);
 	}
 	
 	//Player input
@@ -75,6 +85,9 @@ public class FaxModulo extends PhysObject {
 			this.animator.resume();
 		}
 		
+		//TODO: Figure out how to determine when a jump from a grounded point results in a position that is also grounded
+		//TODO: this is because when jumping from a grounded point to another grounded point the jump meter doesn't reset properly
+		//TODO: Will likely require a redesign of how PhysObjects detect grounding to a more modular and externally accessible format
 		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 			this.neuronMode = false;
 			this.setPosition(this.neuron.getReturnPoint().x, this.neuron.getReturnPoint().y, Align.center);
@@ -167,6 +180,15 @@ public class FaxModulo extends PhysObject {
 			this.neuron.setVisible(true);
 			this.animator.pause();
 			return;
+		}
+		
+		if (Gdx.input.isKeyJustPressed(Input.Keys.W) ||
+				Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+			for (Trigger trigger : this.activeTriggers) {
+				if (Door.class.isInstance(trigger)) {
+					((Door)trigger).use();
+				}
+			}
 		}
 		
 		if (Gdx.input.isKeyPressed(Input.Keys.D) ||

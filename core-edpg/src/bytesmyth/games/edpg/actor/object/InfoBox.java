@@ -25,15 +25,17 @@ public class InfoBox extends Trigger {
 
 	@Override
 	public boolean activate() {
-		this.infoLabel.setVisible(true);
+		if (this.infoLabel == null) return false;
 		
+		this.infoLabel.setVisible(true);
 		return true;
 	}
 
 	@Override
 	public boolean deactivate() {
-		this.infoLabel.setVisible(false);
+		if (this.infoLabel == null) return false;
 		
+		this.infoLabel.setVisible(false);
 		return true;
 	}
 

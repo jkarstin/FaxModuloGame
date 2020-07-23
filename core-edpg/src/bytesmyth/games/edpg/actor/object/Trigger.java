@@ -20,6 +20,7 @@ public abstract class Trigger extends GameObject {
 	}
 	public Trigger(Stage s) { this(0f, 0f, s); }
 	
+	//Behavior to execute upon FaxModulo entering and exiting the trigger
 	public abstract boolean activate();
 	public abstract boolean deactivate();
 	

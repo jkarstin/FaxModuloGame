@@ -13,6 +13,7 @@ import bytesmyth.games.edpg.util.MetaData;
 public class StartScreen extends BasicScreen {
 	
 	private TextButton startButton;
+	private TextButton controlsButton;
 	
 	@Override
 	public void initialize() {
@@ -27,11 +28,21 @@ public class StartScreen extends BasicScreen {
 			
 		});
 		this.stage.addActor(this.startButton);
+		
+		this.controlsButton = new TextButton("Controls", Assets.skin);
+		this.controlsButton.setPosition(MetaData.VIRTUAL_WIDTH/2f, 200f, Align.center);
+		this.controlsButton.addListener(new ClickListener() {
+			
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				ExecDysfuncPlatformer.setActiveScreen(new ControlsScreen());
+			}
+			
+		});
+		this.stage.addActor(this.controlsButton);
 	}
 	
 	@Override
-	public void update(float dt) {
-		
-	}
+	public void update(float dt) { }
 	
 }
