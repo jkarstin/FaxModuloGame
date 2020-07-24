@@ -124,24 +124,7 @@ atlasData: {
 	]
 	fontDrawables: [
 		{
-			file: C:/Users/karst/Documents/LibGDX/ExecDysfuncPlatformer/core-edpg/assets/gui/a-bot-and-his-d0g/a-bot-and-his-d0g.png
-			bgColor: {
-				r: 1
-				g: 1
-				b: 1
-				a: 1
-			}
-			tint: null
-			tintName: null
-			name: a-bot-and-his-d0g
-			tiled: false
-			minWidth: -1
-			minHeight: -1
-			customized: false
-			tenPatchData: null
-		}
-		{
-			file: C:/Users/karst/Documents/LibGDX/ExecDysfuncPlatformer/core-edpg/assets/gui/arial.png
+			file: C:/Users/karst/Documents/LibGDX/ExecDysfuncPlatformer/core-edpg/assets/gui/arial_32.png
 			bgColor: {
 				r: 0
 				g: 0
@@ -150,7 +133,41 @@ atlasData: {
 			}
 			tint: null
 			tintName: null
-			name: arial
+			name: arial_32
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: C:/Users/karst/Documents/LibGDX/ExecDysfuncPlatformer/core-edpg/assets/gui/arial_16.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: arial_16
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+		}
+		{
+			file: C:/Users/karst/Documents/LibGDX/ExecDysfuncPlatformer/core-edpg/assets/gui/arial_48.png
+			bgColor: {
+				r: 0
+				g: 0
+				b: 0
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: arial_48
 			tiled: false
 			minWidth: -1
 			minHeight: -1
@@ -195,13 +212,18 @@ jsonData: {
 	fonts: [
 		{
 			class: com.ray3k.skincomposer.data.FontData
-			name: a-bot-and-his-d0g
-			file: C:/Users/karst/Documents/LibGDX/ExecDysfuncPlatformer/core-edpg/assets/gui/a-bot-and-his-d0g/a-bot-and-his-d0g.fnt
+			name: arial_16
+			file: C:/Users/karst/Documents/LibGDX/ExecDysfuncPlatformer/core-edpg/assets/gui/arial_16.fnt
 		}
 		{
 			class: com.ray3k.skincomposer.data.FontData
-			name: arial
-			file: C:/Users/karst/Documents/LibGDX/ExecDysfuncPlatformer/core-edpg/assets/gui/arial.fnt
+			name: arial_32
+			file: C:/Users/karst/Documents/LibGDX/ExecDysfuncPlatformer/core-edpg/assets/gui/arial_32.fnt
+		}
+		{
+			class: com.ray3k.skincomposer.data.FontData
+			name: arial_48
+			file: C:/Users/karst/Documents/LibGDX/ExecDysfuncPlatformer/core-edpg/assets/gui/arial_48.fnt
 		}
 	]
 	freeTypeFonts: []
@@ -475,7 +497,7 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: arial
+						value: arial_16
 					}
 					fontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -919,7 +941,7 @@ jsonData: {
 					}
 				}
 				deletable: true
-				parent: null
+				parent: default
 			}
 		]
 		com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton: [
@@ -975,7 +997,7 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: arial
+						value: arial_16
 					}
 					fontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -1173,7 +1195,7 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: arial
+						value: arial_16
 					}
 					fontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -1331,7 +1353,7 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: arial
+						value: arial_16
 					}
 					fontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -1361,14 +1383,14 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: arial
+						value: null
 					}
 					fontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
 						type: com.badlogic.gdx.graphics.Color
 						name: fontColor
 						optional: true
-						value: black
+						value: null
 					}
 					background: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -1379,7 +1401,7 @@ jsonData: {
 					}
 				}
 				deletable: true
-				parent: null
+				parent: default
 			}
 			{
 				class: com.ray3k.skincomposer.data.StyleData
@@ -1391,14 +1413,14 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: arial
+						value: null
 					}
 					fontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
 						type: com.badlogic.gdx.graphics.Color
 						name: fontColor
 						optional: true
-						value: black
+						value: null
 					}
 					background: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -1409,7 +1431,7 @@ jsonData: {
 					}
 				}
 				deletable: true
-				parent: null
+				parent: default
 			}
 			{
 				class: com.ray3k.skincomposer.data.StyleData
@@ -1421,14 +1443,14 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: arial
+						value: null
 					}
 					fontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
 						type: com.badlogic.gdx.graphics.Color
 						name: fontColor
 						optional: true
-						value: black
+						value: null
 					}
 					background: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -1439,7 +1461,7 @@ jsonData: {
 					}
 				}
 				deletable: true
-				parent: null
+				parent: default
 			}
 			{
 				class: com.ray3k.skincomposer.data.StyleData
@@ -1451,7 +1473,37 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: arial
+						value: null
+					}
+					fontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: fontColor
+						optional: true
+						value: null
+					}
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: true
+						value: bubble_center_right
+					}
+				}
+				deletable: true
+				parent: default
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: title
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.Label
+				properties: {
+					font: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.g2d.BitmapFont
+						name: font
+						optional: false
+						value: arial_48
 					}
 					fontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -1465,11 +1517,101 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: background
 						optional: true
-						value: bubble_center_right
+						value: null
 					}
 				}
 				deletable: true
 				parent: null
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: title_white
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.Label
+				properties: {
+					font: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.g2d.BitmapFont
+						name: font
+						optional: false
+						value: null
+					}
+					fontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: fontColor
+						optional: true
+						value: white
+					}
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: true
+						value: null
+					}
+				}
+				deletable: true
+				parent: title
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: subtitle
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.Label
+				properties: {
+					font: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.g2d.BitmapFont
+						name: font
+						optional: false
+						value: arial_32
+					}
+					fontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: fontColor
+						optional: true
+						value: black
+					}
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: true
+						value: null
+					}
+				}
+				deletable: true
+				parent: null
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: subtitle_white
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.Label
+				properties: {
+					font: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.g2d.BitmapFont
+						name: font
+						optional: false
+						value: null
+					}
+					fontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: fontColor
+						optional: true
+						value: white
+					}
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: true
+						value: null
+					}
+				}
+				deletable: true
+				parent: subtitle
 			}
 		]
 		com.badlogic.gdx.scenes.scene2d.ui.List: [
@@ -1483,7 +1625,7 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: arial
+						value: arial_16
 					}
 					fontColorSelected: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -1728,7 +1870,7 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: arial
+						value: arial_16
 					}
 					fontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -1996,7 +2138,7 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: arial
+						value: arial_16
 					}
 					fontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -2152,7 +2294,7 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: arial
+						value: arial_16
 					}
 					fontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -2310,7 +2452,7 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: arial
+						value: arial_16
 					}
 					fontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -2522,7 +2664,7 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: titleFont
 						optional: false
-						value: arial
+						value: arial_32
 					}
 					titleFontColor: {
 						class: com.ray3k.skincomposer.data.StyleProperty

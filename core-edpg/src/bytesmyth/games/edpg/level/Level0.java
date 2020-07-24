@@ -11,6 +11,8 @@ import bytesmyth.games.edpg.screen.WinScreen;
 
 public class Level0 extends LevelScreen {
 	
+	public Level0() { super("Level 0", "The Tower"); }
+
 	@Override
 	public void initialize() {
 		(new GameActor(this.mainStage)).loadTexture("Level0.png");

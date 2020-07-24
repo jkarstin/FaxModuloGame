@@ -1,10 +1,13 @@
 {
 com.badlogic.gdx.graphics.g2d.BitmapFont: {
-	a-bot-and-his-d0g: {
-		file: a-bot-and-his-d0g.fnt
+	arial_16: {
+		file: arial_16.fnt
 	}
-	arial: {
-		file: arial.fnt
+	arial_32: {
+		file: arial_32.fnt
+	}
+	arial_48: {
+		file: arial_48.fnt
 	}
 }
 com.badlogic.gdx.graphics.Color: {
@@ -45,7 +48,7 @@ com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
 		checkboxOn: button_down
 		checkboxOff: button
 		checkboxOver: button_over
-		font: arial
+		font: arial_16
 		fontColor: black
 	}
 }
@@ -56,6 +59,7 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
 		over: button_over
 	}
 	toggle: {
+		parent: default
 		up: button
 		down: button_down
 		over: button_over
@@ -65,13 +69,13 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
 com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
 	default: {
 		parent: default
-		font: arial
+		font: arial_16
 		fontColor: black
 		downFontColor: white
 	}
 	toggle: {
 		parent: toggle
-		font: arial
+		font: arial_16
 		fontColor: black
 		downFontColor: white
 		checkedFontColor: white
@@ -79,34 +83,46 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	default: {
-		font: arial
+		font: arial_16
 		fontColor: black
 		background: button
 	}
 	bubble_left: {
-		font: arial
-		fontColor: black
+		parent: default
 		background: bubble_left
 	}
 	bubble_right: {
-		font: arial
-		fontColor: black
+		parent: default
 		background: bubble_right
 	}
 	bubble_center_left: {
-		font: arial
-		fontColor: black
+		parent: default
 		background: bubble_center_left
 	}
 	bubble_center_right: {
-		font: arial
-		fontColor: black
+		parent: default
 		background: bubble_center_right
+	}
+	title: {
+		font: arial_48
+		fontColor: black
+	}
+	title_white: {
+		parent: title
+		fontColor: white
+	}
+	subtitle: {
+		font: arial_32
+		fontColor: black
+	}
+	subtitle_white: {
+		parent: subtitle
+		fontColor: white
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
 	default: {
-		font: arial
+		font: arial_16
 		fontColorSelected: white
 		fontColorUnselected: black
 		selection: button_down
@@ -134,7 +150,7 @@ com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle: {
 	default: {
-		font: arial
+		font: arial_16
 		fontColor: black
 		scrollStyle: default
 		listStyle: default
@@ -159,14 +175,14 @@ com.badlogic.gdx.scenes.scene2d.ui.SplitPane$SplitPaneStyle: {
 com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 	default: {
 		parent: default
-		font: arial
+		font: arial_16
 		fontColor: black
 		downFontColor: white
 		overFontColor: black
 	}
 	toggle: {
 		parent: toggle
-		font: arial
+		font: arial_16
 		fontColor: black
 		downFontColor: white
 		overFontColor: black
@@ -175,7 +191,7 @@ com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
 	default: {
-		font: arial
+		font: arial_16
 		fontColor: black
 	}
 }
@@ -201,7 +217,7 @@ com.badlogic.gdx.scenes.scene2d.ui.Tree$TreeStyle: {
 com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
 	default: {
 		background: button
-		titleFont: arial
+		titleFont: arial_32
 		titleFontColor: black
 	}
 }

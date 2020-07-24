@@ -1,26 +1,33 @@
 
 uiskin.png
-size: 512,512
+size: 1024,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-a-bot-and-his-d0g
+arial_16
   rotate: false
-  xy: 1, 419
-  size: 504, 20
-  orig: 504, 20
-  offset: 0, 0
-  index: -1
-arial
-  rotate: false
-  xy: 1, 441
+  xy: 1, 450
   size: 506, 64
   orig: 506, 64
   offset: 0, 0
   index: -1
+arial_32
+  rotate: false
+  xy: 1, 516
+  size: 506, 177
+  orig: 506, 177
+  offset: 0, 0
+  index: -1
+arial_48
+  rotate: false
+  xy: 1, 76
+  size: 506, 372
+  orig: 506, 372
+  offset: 0, 0
+  index: -1
 bubble_center_left
   rotate: false
-  xy: 1, 366
+  xy: 509, 642
   size: 40, 51
   split: 25, 5, 5, 16
   pad: 5, 5, 5, 16
@@ -29,7 +36,7 @@ bubble_center_left
   index: -1
 bubble_center_right
   rotate: false
-  xy: 1, 366
+  xy: 509, 642
   size: 40, 51
   split: 5, 26, 5, 16
   pad: 5, 5, 5, 16
@@ -38,7 +45,7 @@ bubble_center_right
   index: -1
 bubble_left
   rotate: false
-  xy: 1, 313
+  xy: 1, 23
   size: 40, 51
   split: 13, 5, 5, 16
   pad: 5, 5, 5, 16
@@ -47,7 +54,7 @@ bubble_left
   index: -1
 bubble_right
   rotate: false
-  xy: 43, 366
+  xy: 509, 589
   size: 40, 51
   split: 5, 13, 5, 16
   pad: 5, 5, 5, 16
@@ -56,7 +63,7 @@ bubble_right
   index: -1
 button
   rotate: false
-  xy: 1, 291
+  xy: 551, 673
   size: 20, 20
   split: 6, 6, 6, 6
   orig: 20, 20
@@ -64,7 +71,7 @@ button
   index: -1
 button_down
   rotate: false
-  xy: 85, 397
+  xy: 43, 54
   size: 20, 20
   split: 6, 6, 6, 6
   orig: 20, 20
@@ -72,7 +79,7 @@ button_down
   index: -1
 button_over
   rotate: false
-  xy: 43, 344
+  xy: 1, 1
   size: 20, 20
   split: 6, 6, 6, 6
   orig: 20, 20
