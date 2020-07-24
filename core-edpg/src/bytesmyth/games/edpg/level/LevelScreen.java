@@ -1,6 +1,7 @@
 package bytesmyth.games.edpg.level;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -9,7 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 
+import bytesmyth.games.edpg.ExecDysfuncPlatformer;
 import bytesmyth.games.edpg.actor.GameActor;
+import bytesmyth.games.edpg.screen.StartScreen;
 import bytesmyth.games.edpg.util.Assets;
 import bytesmyth.games.edpg.util.MetaData;
 
@@ -88,6 +91,10 @@ public abstract class LevelScreen implements Screen {
 	
 	@Override
 	public void render(float dt) {
+		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+			ExecDysfuncPlatformer.setActiveScreen(new StartScreen());
+		}
+		
 		if (!this.mainStagePaused) this.mainStage.act(dt);
 		this.uiStage.act(dt);
 		this.titleStage.act(dt);

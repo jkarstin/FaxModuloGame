@@ -5,17 +5,15 @@ import bytesmyth.games.edpg.actor.object.Door;
 import bytesmyth.games.edpg.actor.object.Dopamine;
 import bytesmyth.games.edpg.actor.object.FaxModulo;
 import bytesmyth.games.edpg.actor.object.InfoBox;
-import bytesmyth.games.edpg.actor.object.Portal;
 import bytesmyth.games.edpg.actor.object.StaticObject;
-import bytesmyth.games.edpg.screen.WinScreen;
 
-public class Level0 extends LevelScreen {
+public class Level1 extends LevelScreen {
 	
-	public Level0() { super("Level 0", "The Tower"); }
+	public Level1() { super("Level 1", "The Tower"); }
 
 	@Override
 	public void initialize() {
-		(new GameActor(this.mainStage)).loadTexture("Level0.png");
+		(new GameActor(this.mainStage)).loadTexture("level1.png");
 		
 		new StaticObject(-5000f, -5000f, 10800f, 5000f, this.mainStage);
 		new StaticObject(-5000f, 6000f, 10800f, 5000f, this.mainStage);
@@ -25,10 +23,10 @@ public class Level0 extends LevelScreen {
 		new StaticObject(0f, 500f, 800f, 50f, this.mainStage);
 		new StaticObject(0f, 1500f, 600f, 50f, this.mainStage);
 		new StaticObject(200f, 3000f, 600f, 50f, this.mainStage);
+		new StaticObject(400f, 4350f, 400f, 50f, this.mainStage);
+		new StaticObject(0f, 5705f, 180f, 50f, this.mainStage);
 		
-		new Door(Level0.class, 600f, 0f, this.mainStage);
-		
-		new Portal(WinScreen.class, 600f, 4000f, this.mainStage);
+		new Door(Level2.class, 10f, 5755f, this.mainStage);
 		
 		new Dopamine(100f, 800f, this.mainStage);
 		

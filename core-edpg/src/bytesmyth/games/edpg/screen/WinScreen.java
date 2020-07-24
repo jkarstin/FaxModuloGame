@@ -1,5 +1,7 @@
 package bytesmyth.games.edpg.screen;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 import bytesmyth.games.edpg.ExecDysfuncPlatformer;
@@ -23,7 +25,9 @@ public class WinScreen extends BasicScreen {
 	
 	@Override
 	public void update(float dt) {
-		
+		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+			ExecDysfuncPlatformer.setActiveScreen(new StartScreen());
+		}
 	}
 	
 }

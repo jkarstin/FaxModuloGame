@@ -26,6 +26,13 @@ public class FaxModulo extends PhysObject {
 	private Neuron neuron;
 	private boolean neuronMode;
 	
+	//TODO: Implement momentum-driven movement control using similarly styled parameters
+	private final float airborneLateralDrag = 1f;
+	private final float airborneAcceleration = 5f;
+	
+	private final float groundedLateralDrag = 10f;
+	private final float groundedAcceleration = 10f;
+	
 	private ArrayList<Trigger> activeTriggers;
 	
 	/*** Constructors ***/
@@ -165,20 +172,15 @@ public class FaxModulo extends PhysObject {
 	}
 	
 	private void movementInputProcessing(float dt) {
-		Vector2 moveVector = new Vector2();
 		
-		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-			Gdx.app.exit();
-		}
-		
-		boolean walking = false;
-		Vector2 tmp = new Vector2();
+		//Interaction input
 		
 		if (Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT) && this.hud.getJumps() > 0) {
 			this.neuronMode = true;
 			this.neuron.setPosition(this.getX(Align.center), this.getY(Align.center));
 			this.neuron.setVisible(true);
 			this.animator.pause();
+			//Skip all other forms of interaction/movement processing
 			return;
 		}
 		
@@ -190,6 +192,12 @@ public class FaxModulo extends PhysObject {
 				}
 			}
 		}
+		
+		//Movement input
+		
+		Vector2 moveVector = new Vector2();
+		boolean walking = false;
+		Vector2 tmp = new Vector2();
 		
 		if (Gdx.input.isKeyPressed(Input.Keys.D) ||
 				Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
@@ -230,6 +238,82 @@ public class FaxModulo extends PhysObject {
 				this.animator.setAnimation(this.idleAnim);
 			}
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*** ORIGINAL CODE ***/
+		
+//		Vector2 moveVector = new Vector2();
+//		
+//		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+//			Gdx.app.exit();
+//		}
+//		
+//		boolean walking = false;
+//		Vector2 tmp = new Vector2();
+//		
+//		if (Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT) && this.hud.getJumps() > 0) {
+//			this.neuronMode = true;
+//			this.neuron.setPosition(this.getX(Align.center), this.getY(Align.center));
+//			this.neuron.setVisible(true);
+//			this.animator.pause();
+//			return;
+//		}
+//		
+//		if (Gdx.input.isKeyJustPressed(Input.Keys.W) ||
+//				Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+//			for (Trigger trigger : this.activeTriggers) {
+//				if (Door.class.isInstance(trigger)) {
+//					((Door)trigger).use();
+//				}
+//			}
+//		}
+//		
+//		if (Gdx.input.isKeyPressed(Input.Keys.D) ||
+//				Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+//			moveVector.add(tmp.set(Vector2.X).scl(this.moveSpeed));
+//			walking = !walking;
+//		}
+//		if (Gdx.input.isKeyPressed(Input.Keys.A) ||
+//				Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+//			moveVector.add(tmp.set(Vector2.X).scl(-this.moveSpeed));
+//			walking = !walking;
+//		}
+//		
+//		if (this.grounded && Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+//			this.velocity.y = 350f;
+//		}
+//		
+//		tmp = null;
+//		
+//		if (walking) {
+//			if (moveVector.x < 0f) {
+//				this.setScale(-1f, 1f);
+//			}
+//			else if (moveVector.x > 0f) {
+//				this.setScale(1f, 1f);
+//			}
+//		}
+//		
+//		this.velocity.x = moveVector.x;
+//		
+//		if (this.animator.animation().equals(this.idleAnim)) {
+//			if (walking) {
+//				this.animator.setAnimation(this.walkAnim);
+//				this.animator.restart();
+//			}
+//		}
+//		else if (this.animator.animation().equals(this.walkAnim)) {
+//			if (!walking) {
+//				this.animator.setAnimation(this.idleAnim);
+//			}
+//		}
 	}
 	
 	//Utility
