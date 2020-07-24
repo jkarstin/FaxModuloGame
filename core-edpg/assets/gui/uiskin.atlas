@@ -18,27 +18,63 @@ arial
   orig: 506, 64
   offset: 0, 0
   index: -1
+bubble_center_left
+  rotate: false
+  xy: 1, 366
+  size: 40, 51
+  split: 25, 5, 5, 16
+  pad: 5, 5, 5, 16
+  orig: 40, 51
+  offset: 0, 0
+  index: -1
+bubble_center_right
+  rotate: false
+  xy: 1, 366
+  size: 40, 51
+  split: 5, 26, 5, 16
+  pad: 5, 5, 5, 16
+  orig: 40, 51
+  offset: 0, 0
+  index: -1
+bubble_left
+  rotate: false
+  xy: 1, 313
+  size: 40, 51
+  split: 13, 5, 5, 16
+  pad: 5, 5, 5, 16
+  orig: 40, 51
+  offset: 0, 0
+  index: -1
+bubble_right
+  rotate: false
+  xy: 43, 366
+  size: 40, 51
+  split: 5, 13, 5, 16
+  pad: 5, 5, 5, 16
+  orig: 40, 51
+  offset: 0, 0
+  index: -1
 button
   rotate: false
-  xy: 1, 397
+  xy: 1, 291
   size: 20, 20
-  split: 7, 7, 7, 7
+  split: 6, 6, 6, 6
   orig: 20, 20
   offset: 0, 0
   index: -1
 button_down
   rotate: false
-  xy: 1, 375
+  xy: 85, 397
   size: 20, 20
-  split: 7, 7, 7, 7
+  split: 6, 6, 6, 6
   orig: 20, 20
   offset: 0, 0
   index: -1
 button_over
   rotate: false
-  xy: 23, 397
+  xy: 43, 344
   size: 20, 20
-  split: 7, 7, 7, 7
+  split: 6, 6, 6, 6
   orig: 20, 20
   offset: 0, 0
   index: -1

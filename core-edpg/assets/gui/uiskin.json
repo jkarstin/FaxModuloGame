@@ -33,15 +33,48 @@ com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
 		down: button_down
 		over: button_over
 	}
+	toggle: {
+		up: button
+		down: button_down
+		over: button_over
+		checked: button_down
+	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
 	default: {
 		checkboxOn: button_down
 		checkboxOff: button
-		checkboxOnOver: button_down
 		checkboxOver: button_over
 		font: arial
 		fontColor: black
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
+	default: {
+		up: button
+		down: button_down
+		over: button_over
+	}
+	toggle: {
+		up: button
+		down: button_down
+		over: button_over
+		checked: button_down
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
+	default: {
+		parent: default
+		font: arial
+		fontColor: black
+		downFontColor: white
+	}
+	toggle: {
+		parent: toggle
+		font: arial
+		fontColor: black
+		downFontColor: white
+		checkedFontColor: white
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
@@ -50,6 +83,26 @@ com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 		fontColor: black
 		background: button
 	}
+	bubble_left: {
+		font: arial
+		fontColor: black
+		background: bubble_left
+	}
+	bubble_right: {
+		font: arial
+		fontColor: black
+		background: bubble_right
+	}
+	bubble_center_left: {
+		font: arial
+		fontColor: black
+		background: bubble_center_left
+	}
+	bubble_center_right: {
+		font: arial
+		fontColor: black
+		background: bubble_center_right
+	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
 	default: {
@@ -57,6 +110,7 @@ com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
 		fontColorSelected: white
 		fontColorUnselected: black
 		selection: button_down
+		over: button_over
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
@@ -66,17 +120,15 @@ com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
 		knobBefore: button_down
 	}
 	default-vertical: {
-		background: button
-		knob: button_over
-		knobBefore: button_down
+		parent: default-horizontal
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
 	default: {
 		background: button
-		hScroll: button
+		hScroll: button_down
 		hScrollKnob: button_over
-		vScroll: button
+		vScroll: button_down
 		vScrollKnob: button_over
 	}
 }
@@ -84,21 +136,16 @@ com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle: {
 	default: {
 		font: arial
 		fontColor: black
-		background: button
 		scrollStyle: default
 		listStyle: default
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {
 	default-horizontal: {
-		background: button
-		knob: button_over
-		knobBefore: button_down
+		parent: default-horizontal
 	}
 	default-vertical: {
-		background: button
-		knob: button_over
-		knobBefore: button_down
+		parent: default-vertical
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.SplitPane$SplitPaneStyle: {
@@ -106,18 +153,24 @@ com.badlogic.gdx.scenes.scene2d.ui.SplitPane$SplitPaneStyle: {
 		handle: button_down
 	}
 	default-vertical: {
-		handle: button_down
+		parent: default-horizontal
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 	default: {
+		parent: default
 		font: arial
 		fontColor: black
 		downFontColor: white
 		overFontColor: black
-		up: button
-		down: button_down
-		over: button_over
+	}
+	toggle: {
+		parent: toggle
+		font: arial
+		fontColor: black
+		downFontColor: white
+		overFontColor: black
+		checkedFontColor: white
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
@@ -133,7 +186,7 @@ com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.Touchpad$TouchpadStyle: {
 	default: {
-		background: button
+		background: button_down
 		knob: button_over
 	}
 }
@@ -141,10 +194,13 @@ com.badlogic.gdx.scenes.scene2d.ui.Tree$TreeStyle: {
 	default: {
 		plus: button
 		minus: button_over
+		plusOver: button_over
+		minusOver: button_down
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
 	default: {
+		background: button
 		titleFont: arial
 		titleFontColor: black
 	}
