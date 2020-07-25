@@ -10,9 +10,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Align;
 
+import bytesmyth.games.edpg.ExecDysfuncPlatformer;
 import bytesmyth.games.edpg.actor.HUD;
 import bytesmyth.games.edpg.actor.Neuron;
 import bytesmyth.games.edpg.actor.Neuron.DIRECTION;
+import bytesmyth.games.edpg.screen.StartScreen;
 
 public class FaxModulo extends PhysObject {
 	
@@ -20,18 +22,21 @@ public class FaxModulo extends PhysObject {
 	
 	private HUD hud;
 	
-	private float moveSpeed = 150f;
+	private boolean rightHeld;
+	private boolean leftHeld;
+	private boolean inputFlag;
+	private float moveSpeed = 300f;
 	private Animation<TextureRegion> idleAnim, walkAnim;
 	
 	private Neuron neuron;
 	private boolean neuronMode;
 	
 	//TODO: Implement momentum-driven movement control using similarly styled parameters
-	private final float airborneLateralDrag = 1f;
-	private final float airborneAcceleration = 5f;
-	
-	private final float groundedLateralDrag = 10f;
-	private final float groundedAcceleration = 10f;
+//	private final float airborneLateralDrag = 1f;
+//	private final float airborneAcceleration = 5f;
+//	
+//	private final float groundedLateralDrag = 10f;
+//	private final float groundedAcceleration = 10f;
 	
 	private ArrayList<Trigger> activeTriggers;
 	
@@ -50,6 +55,10 @@ public class FaxModulo extends PhysObject {
 		this.neuronMode = false;
 		
 		this.hud = new HUD(ui);
+		
+		this.rightHeld = false;
+		this.leftHeld = false;
+		this.inputFlag = false;
 		
 		this.activeTriggers = new ArrayList<Trigger>();
 	}
@@ -72,6 +81,11 @@ public class FaxModulo extends PhysObject {
 		if (Dopamine.class.isInstance(trigger)) {
 			this.collect((Dopamine)trigger);
 		}
+		
+		else if (DamageArea.class.isInstance(trigger)) {
+			this.hud.setGears(this.hud.getGears()-1);
+			if (this.hud.getGears() == 0) ExecDysfuncPlatformer.setActiveScreen(new StartScreen());
+		}
 	}
 	
 	//Called by a Trigger the moment FaxModulo stops overlapping with it
@@ -92,11 +106,10 @@ public class FaxModulo extends PhysObject {
 			this.animator.resume();
 		}
 		
-		//TODO: Figure out how to determine when a jump from a grounded point results in a position that is also grounded
-		//TODO: this is because when jumping from a grounded point to another grounded point the jump meter doesn't reset properly
-		//TODO: Will likely require a redesign of how PhysObjects detect grounding to a more modular and externally accessible format
 		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 			this.neuronMode = false;
+			this.inputFlag = false;
+			this.grounded = false;
 			this.setPosition(this.neuron.getReturnPoint().x, this.neuron.getReturnPoint().y, Align.center);
 			this.setVelocity(this.neuron.getDirectionVector().scl(500f));
 			this.neuron.setVisible(false);
@@ -199,13 +212,35 @@ public class FaxModulo extends PhysObject {
 		boolean walking = false;
 		Vector2 tmp = new Vector2();
 		
-		if (Gdx.input.isKeyPressed(Input.Keys.D) ||
-				Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+		if (Gdx.input.isKeyJustPressed(Input.Keys.D) ||
+				Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
+			this.rightHeld = true;
+			this.inputFlag = true;
+		}
+		if (this.rightHeld &&
+				!(Gdx.input.isKeyPressed(Input.Keys.D) ||
+						Gdx.input.isKeyPressed(Input.Keys.RIGHT))
+				) {
+			this.rightHeld = false;
+		}
+		
+		if (Gdx.input.isKeyJustPressed(Input.Keys.A) ||
+				Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
+			this.leftHeld = true;
+			this.inputFlag = true;
+		}
+		if (this.leftHeld &&
+				!(Gdx.input.isKeyPressed(Input.Keys.A) ||
+						Gdx.input.isKeyPressed(Input.Keys.LEFT))
+				) {
+			this.leftHeld = false;
+		}
+		
+		if (this.rightHeld) {
 			moveVector.add(tmp.set(Vector2.X).scl(this.moveSpeed));
 			walking = !walking;
 		}
-		if (Gdx.input.isKeyPressed(Input.Keys.A) ||
-				Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+		if (this.leftHeld) {
 			moveVector.add(tmp.set(Vector2.X).scl(-this.moveSpeed));
 			walking = !walking;
 		}
@@ -225,7 +260,9 @@ public class FaxModulo extends PhysObject {
 			}
 		}
 		
-		this.velocity.x = moveVector.x;
+		if (this.inputFlag) {
+			this.velocity.x = moveVector.x;
+		}
 		
 		if (this.animator.animation().equals(this.idleAnim)) {
 			if (walking) {
@@ -238,82 +275,6 @@ public class FaxModulo extends PhysObject {
 				this.animator.setAnimation(this.idleAnim);
 			}
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/*** ORIGINAL CODE ***/
-		
-//		Vector2 moveVector = new Vector2();
-//		
-//		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-//			Gdx.app.exit();
-//		}
-//		
-//		boolean walking = false;
-//		Vector2 tmp = new Vector2();
-//		
-//		if (Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT) && this.hud.getJumps() > 0) {
-//			this.neuronMode = true;
-//			this.neuron.setPosition(this.getX(Align.center), this.getY(Align.center));
-//			this.neuron.setVisible(true);
-//			this.animator.pause();
-//			return;
-//		}
-//		
-//		if (Gdx.input.isKeyJustPressed(Input.Keys.W) ||
-//				Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-//			for (Trigger trigger : this.activeTriggers) {
-//				if (Door.class.isInstance(trigger)) {
-//					((Door)trigger).use();
-//				}
-//			}
-//		}
-//		
-//		if (Gdx.input.isKeyPressed(Input.Keys.D) ||
-//				Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-//			moveVector.add(tmp.set(Vector2.X).scl(this.moveSpeed));
-//			walking = !walking;
-//		}
-//		if (Gdx.input.isKeyPressed(Input.Keys.A) ||
-//				Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-//			moveVector.add(tmp.set(Vector2.X).scl(-this.moveSpeed));
-//			walking = !walking;
-//		}
-//		
-//		if (this.grounded && Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-//			this.velocity.y = 350f;
-//		}
-//		
-//		tmp = null;
-//		
-//		if (walking) {
-//			if (moveVector.x < 0f) {
-//				this.setScale(-1f, 1f);
-//			}
-//			else if (moveVector.x > 0f) {
-//				this.setScale(1f, 1f);
-//			}
-//		}
-//		
-//		this.velocity.x = moveVector.x;
-//		
-//		if (this.animator.animation().equals(this.idleAnim)) {
-//			if (walking) {
-//				this.animator.setAnimation(this.walkAnim);
-//				this.animator.restart();
-//			}
-//		}
-//		else if (this.animator.animation().equals(this.walkAnim)) {
-//			if (!walking) {
-//				this.animator.setAnimation(this.idleAnim);
-//			}
-//		}
 	}
 	
 	//Utility

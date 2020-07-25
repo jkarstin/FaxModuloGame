@@ -15,7 +15,6 @@ public class PhysObject extends GameObject {
 	protected static final float GROUNDING_DISTANCE = 8f;
 	private static final float GROUNDING_LATERAL_PADDING = 2f;
 	
-	
 	protected Vector2 velocity;
 	protected Vector2 acceleration;
 	protected float frictionCoef;
@@ -106,7 +105,7 @@ public class PhysObject extends GameObject {
 	
 	protected void setGrounded() {
 		this.grounded = true;
-		this.setVelocity(new Vector2(this.velocity.x, -GROUNDING_DISTANCE*15f));
+		this.setVelocity(new Vector2(0f, -GROUNDING_DISTANCE*15f));
 	}
 	
 	//Overridden (Inherited or Required)
