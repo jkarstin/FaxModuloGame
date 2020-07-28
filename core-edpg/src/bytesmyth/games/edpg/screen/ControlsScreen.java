@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 
-import bytesmyth.games.edpg.ExecDysfuncPlatformer;
+import bytesmyth.games.edpg.FaxModuloGame;
 import bytesmyth.games.edpg.actor.GameActor;
 import bytesmyth.games.edpg.util.Assets;
 import bytesmyth.games.edpg.util.MetaData;
@@ -28,7 +28,7 @@ public class ControlsScreen extends BasicScreen {
 			
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				ExecDysfuncPlatformer.setActiveScreen(new StartScreen());
+				FaxModuloGame.setActiveScreen(new StartScreen());
 			}
 			
 		});
@@ -44,7 +44,7 @@ public class ControlsScreen extends BasicScreen {
 	public void update(float dt) {
 		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
 			if (this.backButton.isVisible())
-				ExecDysfuncPlatformer.setActiveScreen(new StartScreen());
+				FaxModuloGame.setActiveScreen(new StartScreen());
 			else {
 				this.backButton.clearActions();
 				this.backButton.setVisible(true);

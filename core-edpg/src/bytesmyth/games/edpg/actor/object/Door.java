@@ -4,7 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 
-import bytesmyth.games.edpg.ExecDysfuncPlatformer;
+import bytesmyth.games.edpg.FaxModuloGame;
 import bytesmyth.games.edpg.level.LevelScreen;
 import bytesmyth.games.edpg.util.Assets;
 
@@ -33,7 +33,7 @@ public class Door extends Trigger {
 		if (this.nextLevel == null) return;
 		
 		try {
-			ExecDysfuncPlatformer.setActiveScreen(this.nextLevel.newInstance());
+			FaxModuloGame.setActiveScreen(this.nextLevel.newInstance());
 		} catch (Exception e) {}
 	}
 	

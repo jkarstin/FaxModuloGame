@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Align;
 
-import bytesmyth.games.edpg.ExecDysfuncPlatformer;
+import bytesmyth.games.edpg.FaxModuloGame;
 import bytesmyth.games.edpg.actor.HUD;
 import bytesmyth.games.edpg.actor.Neuron;
 import bytesmyth.games.edpg.actor.Neuron.DIRECTION;
@@ -84,7 +84,7 @@ public class FaxModulo extends PhysObject {
 		
 		else if (DamageArea.class.isInstance(trigger)) {
 			this.hud.setGears(this.hud.getGears()-1);
-			if (this.hud.getGears() == 0) ExecDysfuncPlatformer.restartScreen();
+			if (this.hud.getGears() == 0) FaxModuloGame.restartScreen();
 		}
 	}
 	

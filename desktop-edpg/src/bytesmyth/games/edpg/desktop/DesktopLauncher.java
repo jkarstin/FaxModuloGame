@@ -3,7 +3,7 @@ package bytesmyth.games.edpg.desktop;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
-import bytesmyth.games.edpg.ExecDysfuncPlatformer;
+import bytesmyth.games.edpg.FaxModuloGame;
 import bytesmyth.games.edpg.util.MetaData;
 
 public class DesktopLauncher {
@@ -14,7 +14,7 @@ public class DesktopLauncher {
 		config.height = (int)MetaData.VIRTUAL_HEIGHT;
 		config.resizable = MetaData.RESIZEABLE;
 		config.title = MetaData.TITLE;
-		new LwjglApplication(new ExecDysfuncPlatformer(), config);
+		new LwjglApplication(new FaxModuloGame(), config);
 	}
 	
 }

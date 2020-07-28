@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 
-import bytesmyth.games.edpg.ExecDysfuncPlatformer;
+import bytesmyth.games.edpg.FaxModuloGame;
 import bytesmyth.games.edpg.actor.GameActor;
 import bytesmyth.games.edpg.screen.StartScreen;
 import bytesmyth.games.edpg.util.Assets;
@@ -92,7 +92,7 @@ public abstract class LevelScreen implements Screen {
 	@Override
 	public void render(float dt) {
 		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-			ExecDysfuncPlatformer.setActiveScreen(new StartScreen());
+			FaxModuloGame.setActiveScreen(new StartScreen());
 		}
 		
 		if (!this.mainStagePaused) this.mainStage.act(dt);

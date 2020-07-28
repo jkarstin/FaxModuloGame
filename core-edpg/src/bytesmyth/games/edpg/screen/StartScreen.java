@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 
-import bytesmyth.games.edpg.ExecDysfuncPlatformer;
+import bytesmyth.games.edpg.FaxModuloGame;
 import bytesmyth.games.edpg.actor.GameActor;
 import bytesmyth.games.edpg.level.Level1;
 import bytesmyth.games.edpg.util.Assets;
@@ -44,7 +44,7 @@ public class StartScreen extends BasicScreen {
 			
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				ExecDysfuncPlatformer.setActiveScreen(new Level1());
+				FaxModuloGame.setActiveScreen(new Level1());
 			}
 			
 		});
@@ -57,7 +57,7 @@ public class StartScreen extends BasicScreen {
 			
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				ExecDysfuncPlatformer.setActiveScreen(new ControlsScreen());
+				FaxModuloGame.setActiveScreen(new ControlsScreen());
 			}
 			
 		});

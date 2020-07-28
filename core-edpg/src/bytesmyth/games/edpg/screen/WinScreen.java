@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
-import bytesmyth.games.edpg.ExecDysfuncPlatformer;
+import bytesmyth.games.edpg.FaxModuloGame;
 import bytesmyth.games.edpg.actor.GameActor;
 
 public class WinScreen extends BasicScreen {
@@ -17,7 +17,7 @@ public class WinScreen extends BasicScreen {
 				Actions.sequence(
 						Actions.delay(10f),
 						Actions.run(()->{
-							ExecDysfuncPlatformer.setActiveScreen(new StartScreen());
+							FaxModuloGame.setActiveScreen(new StartScreen());
 							})
 						)
 				);
@@ -26,7 +26,7 @@ public class WinScreen extends BasicScreen {
 	@Override
 	public void update(float dt) {
 		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-			ExecDysfuncPlatformer.setActiveScreen(new StartScreen());
+			FaxModuloGame.setActiveScreen(new StartScreen());
 		}
 	}
 	

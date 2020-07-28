@@ -3,7 +3,7 @@ package bytesmyth.games.edpg.actor.object;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
-import bytesmyth.games.edpg.ExecDysfuncPlatformer;
+import bytesmyth.games.edpg.FaxModuloGame;
 import bytesmyth.games.edpg.actor.RoundCollider;
 
 public class Portal extends Trigger {
@@ -25,7 +25,7 @@ public class Portal extends Trigger {
 	@Override
 	public boolean activate() {
 		try {
-			ExecDysfuncPlatformer.setActiveScreen(this.nextScreen.newInstance());
+			FaxModuloGame.setActiveScreen(this.nextScreen.newInstance());
 			return true;
 		} catch (Exception e) {}
 		return false;
