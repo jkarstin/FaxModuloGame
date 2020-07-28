@@ -32,7 +32,7 @@ public class Level1 extends LevelScreen {
 		
 		new FaxModulo(100f, 2f, this.mainStage, this.uiStage);
 		
-		new InfoBox("SHIFT", 300f, 0f, 20f, 175f, this.mainStage);
+		new InfoBox("SHIFT\nAIM\nLAUNCH", 190f, 20f, 20f, 175f, this.mainStage);
 	}
 
 	@Override

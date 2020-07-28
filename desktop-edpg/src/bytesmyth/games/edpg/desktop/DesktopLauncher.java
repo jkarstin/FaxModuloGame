@@ -13,6 +13,7 @@ public class DesktopLauncher {
 		config.width = (int)MetaData.VIRTUAL_WIDTH;
 		config.height = (int)MetaData.VIRTUAL_HEIGHT;
 		config.resizable = MetaData.RESIZEABLE;
+		config.title = MetaData.TITLE;
 		new LwjglApplication(new ExecDysfuncPlatformer(), config);
 	}
 	

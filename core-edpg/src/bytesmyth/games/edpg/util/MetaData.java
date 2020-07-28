@@ -6,5 +6,6 @@ public class MetaData {
 	public static final float VIRTUAL_HEIGHT = 600f;
 	public static final boolean RESIZEABLE = false;
 	public static final boolean SHOW_WIREFRAMES = false;
+	public static final String TITLE = "Fax Modulo [DEMO]";
 
 }

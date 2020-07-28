@@ -9,7 +9,7 @@ import bytesmyth.games.edpg.screen.WinScreen;
 
 public class Level2 extends LevelScreen {
 
-	public Level2() { super("Level 2", "Lateral Mobility"); }
+	public Level2() { super("Level 2", "Lateral Lava"); }
 
 	@Override
 	public void initialize() {

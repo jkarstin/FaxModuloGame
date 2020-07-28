@@ -84,7 +84,7 @@ public class FaxModulo extends PhysObject {
 		
 		else if (DamageArea.class.isInstance(trigger)) {
 			this.hud.setGears(this.hud.getGears()-1);
-			if (this.hud.getGears() == 0) ExecDysfuncPlatformer.setActiveScreen(new StartScreen());
+			if (this.hud.getGears() == 0) ExecDysfuncPlatformer.restartScreen();
 		}
 	}
 	

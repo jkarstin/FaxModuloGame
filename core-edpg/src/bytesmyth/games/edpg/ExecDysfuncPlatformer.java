@@ -14,6 +14,12 @@ public class ExecDysfuncPlatformer extends Game {
 		ExecDysfuncPlatformer.EDP.setScreen(screen);
 	}
 	
+	public static void restartScreen() {
+		try {
+			ExecDysfuncPlatformer.EDP.setScreen(ExecDysfuncPlatformer.EDP.getScreen().getClass().newInstance());
+		} catch (Exception e) {}
+	}
+	
 	public ExecDysfuncPlatformer() {
 		ExecDysfuncPlatformer.EDP = this;
 	}
