@@ -1,5 +1,5 @@
 buildscript {
-    
+
 
     repositories {
         mavenLocal()
@@ -10,16 +10,16 @@ buildscript {
         google()
     }
     dependencies {
-        
+
 
     }
 }
 
 allprojects {
 
-    version = '1.0'
+    version = '0.0.2'
     ext {
-        appName = "exec-dysfunc-platformer"
+        appName = "fax-modulo-game"
         gdxVersion = '1.9.10'
         roboVMVersion = '2.3.7'
         box2DLightsVersion = '1.4'
@@ -51,7 +51,7 @@ project(":desktop-edpg") {
         api "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
         api "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-bullet-platform:$gdxVersion:natives-desktop"
-        
+
     }
 }
 
@@ -68,6 +68,6 @@ project(":core-edpg") {
         api "com.badlogicgames.ashley:ashley:$ashleyVersion"
         api "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"
         api "com.badlogicgames.gdx:gdx-bullet:$gdxVersion"
-        
+
     }
 }
