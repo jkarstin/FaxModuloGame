@@ -1,4 +1,4 @@
-package bytesmyth.games.edpg.actor.object;
+package bytesmyth.games.edpg.actor.object.trigger;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;

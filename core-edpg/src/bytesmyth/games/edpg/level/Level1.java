@@ -3,10 +3,11 @@ package bytesmyth.games.edpg.level;
 import com.badlogic.gdx.math.Vector2;
 
 import bytesmyth.games.edpg.actor.GameActor;
-import bytesmyth.games.edpg.actor.object.Door;
-import bytesmyth.games.edpg.actor.object.Dopamine;
-import bytesmyth.games.edpg.actor.object.InfoBox;
 import bytesmyth.games.edpg.actor.object.StaticObject;
+import bytesmyth.games.edpg.actor.object.trigger.Door;
+import bytesmyth.games.edpg.actor.object.trigger.Dopamine;
+import bytesmyth.games.edpg.actor.object.trigger.InfoBox;
+import bytesmyth.games.edpg.actor.object.trigger.WheelController;
 
 public class Level1 extends LevelScreen {
 	
@@ -15,6 +16,8 @@ public class Level1 extends LevelScreen {
 	@Override
 	public void initialize() {
 		(new GameActor(this.environment)).loadTexture("level1.png");
+		
+		new WheelController(200f, 550f, this.background, this.collisions);
 		
 		new StaticObject(-5000f, -5000f, 10800f, 5000f, this.mainStage, this.collisions);
 		new StaticObject(-5000f, 6000f, 10800f, 5000f, this.mainStage, this.collisions);

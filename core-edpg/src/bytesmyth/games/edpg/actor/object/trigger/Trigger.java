@@ -1,9 +1,11 @@
-package bytesmyth.games.edpg.actor.object;
+package bytesmyth.games.edpg.actor.object.trigger;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import bytesmyth.games.edpg.actor.Collider;
 import bytesmyth.games.edpg.actor.GameActor;
+import bytesmyth.games.edpg.actor.object.FaxModulo;
+import bytesmyth.games.edpg.actor.object.GameObject;
 
 public abstract class Trigger extends GameObject {
 	
@@ -36,6 +38,8 @@ public abstract class Trigger extends GameObject {
 	
 	@Override
 	public void act(float dt) {
+		super.act(dt);
+		
 		for (GameActor actor : GameActor.getList(this.collider.getStage(), Collider.class)) {
 			Collider col = (Collider)actor;
 			if (col.getAttached() != null && FaxModulo.class.isInstance(col.getAttached())) {

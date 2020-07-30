@@ -3,9 +3,9 @@ package bytesmyth.games.edpg.level;
 import com.badlogic.gdx.math.Vector2;
 
 import bytesmyth.games.edpg.actor.GameActor;
-import bytesmyth.games.edpg.actor.object.DamageArea;
-import bytesmyth.games.edpg.actor.object.Portal;
 import bytesmyth.games.edpg.actor.object.StaticObject;
+import bytesmyth.games.edpg.actor.object.trigger.DamageArea;
+import bytesmyth.games.edpg.actor.object.trigger.Portal;
 import bytesmyth.games.edpg.screen.WinScreen;
 
 public class Level2 extends LevelScreen {

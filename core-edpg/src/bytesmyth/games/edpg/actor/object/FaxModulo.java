@@ -14,6 +14,10 @@ import bytesmyth.games.edpg.FaxModuloGame;
 import bytesmyth.games.edpg.actor.HUD;
 import bytesmyth.games.edpg.actor.Neuron;
 import bytesmyth.games.edpg.actor.Neuron.DIRECTION;
+import bytesmyth.games.edpg.actor.object.trigger.DamageArea;
+import bytesmyth.games.edpg.actor.object.trigger.Door;
+import bytesmyth.games.edpg.actor.object.trigger.Dopamine;
+import bytesmyth.games.edpg.actor.object.trigger.Trigger;
 import bytesmyth.games.edpg.screen.StartScreen;
 
 public class FaxModulo extends PhysObject {
