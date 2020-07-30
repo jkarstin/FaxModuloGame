@@ -18,7 +18,6 @@ import bytesmyth.games.edpg.actor.object.trigger.DamageArea;
 import bytesmyth.games.edpg.actor.object.trigger.Door;
 import bytesmyth.games.edpg.actor.object.trigger.Dopamine;
 import bytesmyth.games.edpg.actor.object.trigger.Trigger;
-import bytesmyth.games.edpg.screen.StartScreen;
 
 public class FaxModulo extends PhysObject {
 	
@@ -299,14 +298,6 @@ public class FaxModulo extends PhysObject {
 		}
 		else {
 			super.act(dt);
-			
-//			/* TODO: Structure all Level cameras that should follow FaxModulo into a single accessible value */
-//			
-//			this.getStage().getCamera().position.x = this.getX(Align.center);
-//			this.getStage().getCamera().position.y = this.getY(Align.center);
-//			
-//			this.collider.getStage().getCamera().position.x = this.getX(Align.center);
-//			this.collider.getStage().getCamera().position.y = this.getY(Align.center);
 			
 			movementInputProcessing(dt);
 		}
