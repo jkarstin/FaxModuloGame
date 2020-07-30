@@ -7,15 +7,16 @@ public class BoxCollider extends Collider {
 	
 	/*** Constructors ***/
 	
-	public BoxCollider(float x, float y, float width, float height) {
-		super(SHAPE_TYP.Box, x, y, width, height);
+	public BoxCollider(GameActor attached, float x, float y, float width, float height, Stage c) {
+		super(attached, SHAPE_TYP.Box, x, y, width, height, c);
 	}
-	public BoxCollider() { this(0f, 0f, 50f, 50f); }
-
-	public BoxCollider(float x, float y, float width, float height, Stage s) {
-		super(SHAPE_TYP.Box, x, y, width, height, s);
+	public BoxCollider(float x, float y, float width, float height, Stage c) {
+		this(null, x, y, width, height, c);
 	}
-	public BoxCollider(Stage s) { this(0f, 0f, 50f, 50f, s); }
+	public BoxCollider(GameActor attached, Stage c) {
+		this(null, 0f, 0f, 50f, 50f, c);
+	}
+	public BoxCollider(Stage c) { this(null, c); }
 	
 	/*** Methods ***/
 	

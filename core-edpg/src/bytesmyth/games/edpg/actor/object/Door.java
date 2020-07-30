@@ -13,8 +13,8 @@ public class Door extends Trigger {
 	private Class<? extends LevelScreen> nextLevel;
 	private Label promptLabel;
 	
-	public Door(Class<? extends LevelScreen> level, float x, float y, Stage s) {
-		super(x, y, s);
+	public Door(Class<? extends LevelScreen> level, float x, float y, Stage s, Stage c) {
+		super(x, y, s, c);
 		
 		this.loadTexture("door.png");
 		this.setSize(this.animator.getKeyFrame(0f).getRegionWidth(), this.animator.getKeyFrame(0f).getRegionHeight());
@@ -25,8 +25,8 @@ public class Door extends Trigger {
 		this.promptLabel.setPosition(this.getWidth()/2f, this.getHeight()+10f, Align.bottom);
 		this.promptLabel.setVisible(false);
 	}
-	public Door(Class<? extends LevelScreen> level, Stage s) {
-		this(level, 0f, 0f, s);
+	public Door(Class<? extends LevelScreen> level, Stage s, Stage c) {
+		this(level, 0f, 0f, s, c);
 	}
 	
 	public void use() {

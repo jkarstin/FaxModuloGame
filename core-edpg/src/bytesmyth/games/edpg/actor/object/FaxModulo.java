@@ -42,8 +42,8 @@ public class FaxModulo extends PhysObject {
 	
 	/*** Constructors ***/
 	
-	public FaxModulo(float x, float y, Stage s, Stage ui) {
-		super(0f, 0f, s);
+	public FaxModulo(float x, float y, Stage s, Stage c, Stage ui) {
+		super(0f, 0f, s, c);
 		
 		this.loadAnimations();
 		this.setPosition(x, y);
@@ -62,7 +62,7 @@ public class FaxModulo extends PhysObject {
 		
 		this.activeTriggers = new ArrayList<Trigger>();
 	}
-	public FaxModulo(Stage s, Stage ui) { this(0f, 0f, s, ui); }
+	public FaxModulo(Stage s, Stage c, Stage ui) { this(0f, 0f, s, c, ui); }
 	
 	/*** Methods ***/
 	
@@ -296,8 +296,13 @@ public class FaxModulo extends PhysObject {
 		else {
 			super.act(dt);
 			
-			this.getStage().getCamera().position.x = this.getX(Align.center);
-			this.getStage().getCamera().position.y = this.getY(Align.center);
+//			/* TODO: Structure all Level cameras that should follow FaxModulo into a single accessible value */
+//			
+//			this.getStage().getCamera().position.x = this.getX(Align.center);
+//			this.getStage().getCamera().position.y = this.getY(Align.center);
+//			
+//			this.collider.getStage().getCamera().position.x = this.getX(Align.center);
+//			this.collider.getStage().getCamera().position.y = this.getY(Align.center);
 			
 			movementInputProcessing(dt);
 		}

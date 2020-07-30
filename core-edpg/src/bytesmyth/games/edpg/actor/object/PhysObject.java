@@ -26,8 +26,8 @@ public class PhysObject extends GameObject {
 	
 	/*** Constructors ***/
 	
-	public PhysObject(float x, float y, float width, float height, Stage s) {
-		super(OBJECT_TYP.Physics, x, y, width, height, s);
+	public PhysObject(float x, float y, float width, float height, Stage s, Stage c) {
+		super(OBJECT_TYP.Physics, x, y, width, height, s, c);
 		
 		this.velocity = new Vector2();
 		this.acceleration = new Vector2();
@@ -41,14 +41,14 @@ public class PhysObject extends GameObject {
 				y-GROUNDING_DISTANCE,
 				50f-(2*GROUNDING_LATERAL_PADDING),
 				GROUNDING_DISTANCE,
-				s
+				c
 				);
 		this.groundDetector.setPhysical(false);
 	}
-	public PhysObject(float x, float y, Stage s) {
-		this(x, y, 50f, 50f, s);
+	public PhysObject(float x, float y, Stage s, Stage c) {
+		this(x, y, 50f, 50f, s, c);
 	}
-	public PhysObject(Stage s) { this(0f, 0f, s); }
+	public PhysObject(Stage s, Stage c) { this(0f, 0f, s, c); }
 	
 	/*** Methods ***/
 	

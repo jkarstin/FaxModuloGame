@@ -1,6 +1,5 @@
 package bytesmyth.games.edpg.actor;
 
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Intersector.MinimumTranslationVector;
 import com.badlogic.gdx.math.Polygon;
@@ -20,14 +19,17 @@ public abstract class Collider extends GameActor {
 	
 	/*** Fields ***/
 	
+	private GameActor attached;
 	private final SHAPE_TYP shapeType;
 	protected Polygon boundaryPolygon;
 	protected boolean physical;
 	
 	/*** Constructors ***/
 	
-	public Collider(SHAPE_TYP type, float x, float y, float width, float height) {
-		super(x, y);
+	public Collider(GameActor attached, SHAPE_TYP type, float x, float y, float width, float height, Stage c) {
+		super(x, y, c);
+		
+		this.attached = attached;
 		
 		this.shapeType = type;
 		this.physical = true;
@@ -38,21 +40,9 @@ public abstract class Collider extends GameActor {
 		
 		this.setDebug(MetaData.SHOW_WIREFRAMES);
 	}
-	public Collider(SHAPE_TYP type) { this(type, 0f, 0f, 50f, 50f); }
-	
-	public Collider(SHAPE_TYP type, float x, float y, float width, float height, Stage s) {
-		super(x, y, s);
-		
-		this.shapeType = type;
-		this.physical = true;
-		
-		this.loadAnimations();
-		
-		this.setSize(width, height);
-		
-		this.setDebug(MetaData.SHOW_WIREFRAMES);
-	}
-	public Collider(SHAPE_TYP type, Stage s) { this(type, 0f, 0f, 50f, 50f, s); }
+	public Collider(SHAPE_TYP type, float x, float y, float width, float height, Stage c) { this(null, type, x, y, width, height, c); }
+	public Collider(GameActor attached, SHAPE_TYP type, Stage c) { this(attached, type, 0f, 0f, 50f, 50f, c); }
+	public Collider(SHAPE_TYP type, Stage c) { this(null, type, c); }
 	
 	/*** Methods ***/
 	
@@ -69,6 +59,10 @@ public abstract class Collider extends GameActor {
 	
 	public boolean isPhysical() {
 		return this.physical;
+	}
+	
+	public GameActor getAttached() {
+		return this.attached;
 	}
 	
 	public Polygon getBoundaryPolygon() {
@@ -159,13 +153,6 @@ public abstract class Collider extends GameActor {
 	}
 	
 	//Overridden (Inherited or Required)
-	
-	@Override
-	public void draw(Batch batch, float parentAlpha) {
-		if (MetaData.SHOW_WIREFRAMES) {
-			super.draw(batch, parentAlpha);
-		}
-	}
 	
 	@Override
 	public void setSize(float width, float height) {

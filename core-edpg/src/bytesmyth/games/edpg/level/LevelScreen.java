@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -12,6 +13,7 @@ import com.badlogic.gdx.utils.Align;
 
 import bytesmyth.games.edpg.FaxModuloGame;
 import bytesmyth.games.edpg.actor.GameActor;
+import bytesmyth.games.edpg.actor.object.FaxModulo;
 import bytesmyth.games.edpg.screen.StartScreen;
 import bytesmyth.games.edpg.util.Assets;
 import bytesmyth.games.edpg.util.MetaData;
@@ -26,20 +28,35 @@ public abstract class LevelScreen implements Screen {
 	
 	private boolean mainStagePaused;
 	
+	public final Stage environment;
+	public final Stage background;
+	public final Stage collisions;
 	public final Stage mainStage;
+	public final Stage foreground;
 	public final Stage uiStage;
 	public final Stage titleStage;
 	
-	public LevelScreen(String title, String subtitle) {
+	private final FaxModulo fm;
+	private final LevelCamera cam;
+	
+	public LevelScreen(String title, String subtitle, Vector2 spawn) {
 		this.title = title;
 		this.subtitle = subtitle;
 		
 		this.mainStagePaused = false;
 		
+		this.environment = new Stage();
+		this.background = new Stage();
+		this.collisions = new Stage();		
 		this.mainStage = new Stage();
+		this.foreground = new Stage();
 		this.uiStage = new Stage();
 		this.titleStage = new Stage();
 		Gdx.input.setInputProcessor(this.uiStage);
+		
+		this.fm = new FaxModulo(spawn.x, spawn.y, this.mainStage, this.collisions, this.uiStage);
+		
+		this.cam = new LevelCamera(this.fm, this.environment, this.background, this.collisions, this.mainStage, this.foreground);
 		
 		this.initialize();
 		
@@ -95,16 +112,26 @@ public abstract class LevelScreen implements Screen {
 			FaxModuloGame.setActiveScreen(new StartScreen());
 		}
 		
+		this.environment.act(dt);
+		this.background.act(dt);
+		this.collisions.act(dt);
 		if (!this.mainStagePaused) this.mainStage.act(dt);
+		this.foreground.act(dt);
 		this.uiStage.act(dt);
 		this.titleStage.act(dt);
+		
+		this.cam.update(dt);
 		
 		if (!this.mainStagePaused) this.update(dt);
 		
 		Gdx.gl20.glClearColor(0.5f, 0f, 0f, 1f);
 		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
+		this.environment.draw();
+		this.background.draw();
+		if (MetaData.SHOW_WIREFRAMES) this.collisions.draw();
 		this.mainStage.draw();
+		this.foreground.draw();
 		this.uiStage.draw();
 		this.titleStage.draw();
 	}

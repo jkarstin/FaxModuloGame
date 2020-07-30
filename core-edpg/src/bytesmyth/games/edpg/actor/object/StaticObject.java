@@ -4,13 +4,13 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class StaticObject extends GameObject {
 	
-	public StaticObject(float x, float y, float width, float height, Stage s) {
-		super(OBJECT_TYP.Static, x, y, width, height, s);
+	public StaticObject(float x, float y, float width, float height, Stage s, Stage c) {
+		super(OBJECT_TYP.Static, x, y, width, height, s, c);
 	}
-	public StaticObject(float x, float y, Stage s) {
-		this(x, y, 50f, 50f, s);
+	public StaticObject(float x, float y, Stage s, Stage c) {
+		this(x, y, 50f, 50f, s, c);
 	}
-	public StaticObject(Stage s) { this(0f, 0f, s); }
+	public StaticObject(Stage s, Stage c) { this(0f, 0f, s, c); }
 	
 	/*** Methods ***/
 	

@@ -11,20 +11,19 @@ public class RoundCollider extends Collider {
 	private int numSides;
 	
 	/*** Constructors ***/
-	
-	public RoundCollider(float x, float y, float width, float height) {
-		super(SHAPE_TYP.Ellipse, x, y, width, height);
+		
+	public RoundCollider(GameActor attached, float x, float y, float width, float height, Stage c) {
+		super(attached, SHAPE_TYP.Ellipse, x, y, width, height, c);
 		
 		this.setNumSides(8);
 	}
-	public RoundCollider() { this(0f, 0f, 50f, 50f); }
-
-	public RoundCollider(float x, float y, float width, float height, Stage s) {
-		super(SHAPE_TYP.Ellipse, x, y, width, height, s);
-		
-		this.setNumSides(8);
+	public RoundCollider(float x, float y, float width, float height, Stage c) {
+		this(null, x, y, width, height, c);
 	}
-	public RoundCollider(Stage s) { this(0f, 0f, 50f, 50f, s); }
+	public RoundCollider(GameActor attached, Stage c) {
+		this(null, 0f, 0f, 50f, 50f, c);
+	}
+	public RoundCollider(Stage c) { this(null, c); }
 	
 	/*** Methods ***/
 	

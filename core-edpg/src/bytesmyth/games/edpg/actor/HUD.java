@@ -20,38 +20,6 @@ public class HUD extends GameActor {
 	private ArrayList<Animation<TextureRegion>> gearsAnims;
 	private ArrayList<Animation<TextureRegion>> jumpsAnims;
 	
-	public HUD(float x, float y) {
-		super(x, y);
-		
-		this.gears = 3;
-		this.jumps = 3;
-		
-		this.gearsActor = new GameActor();
-		this.jumpsActor = new GameActor();
-		
-		this.addActor(this.gearsActor);
-		this.addActor(this.jumpsActor);
-		
-		this.gearsAnims = new ArrayList<Animation<TextureRegion>>();
-		this.gearsAnims.add(this.gearsActor.loadTexture("hud_gear_meter_0.png"));
-		this.gearsAnims.add(this.gearsActor.loadTexture("hud_gear_meter_1.png"));
-		this.gearsAnims.add(this.gearsActor.loadTexture("hud_gear_meter_2.png"));
-		this.gearsAnims.add(this.gearsActor.loadTexture("hud_gear_meter_3.png"));
-		this.jumpsAnims = new ArrayList<Animation<TextureRegion>>();
-		this.jumpsAnims.add(this.jumpsActor.loadTexture("hud_jump_meter_0.png"));
-		this.jumpsAnims.add(this.jumpsActor.loadTexture("hud_jump_meter_1.png"));
-		this.jumpsAnims.add(this.jumpsActor.loadTexture("hud_jump_meter_2.png"));
-		this.jumpsAnims.add(this.jumpsActor.loadTexture("hud_jump_meter_3.png"));
-		this.jumpsAnims.add(this.jumpsActor.loadTexture("hud_jump_meter_4.png"));
-		this.jumpsAnims.add(this.jumpsActor.loadTexture("hud_jump_meter_5.png"));
-		
-		this.updateHUD();
-		
-		this.setSize(this.jumpsActor.getWidth(), this.jumpsActor.getHeight());
-		this.setPosition(x, y, Align.topLeft);
-	}
-	public HUD() { this(0f, MetaData.VIRTUAL_HEIGHT); }
-	
 	public HUD(float x, float y, Stage s) {
 		super(x, y, s);
 		
