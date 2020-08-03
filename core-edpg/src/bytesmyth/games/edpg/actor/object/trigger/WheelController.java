@@ -14,7 +14,7 @@ public class WheelController extends Trigger {
 		super(x, y, width, height, s, c);
 		
 		this.loadTexture("valve.png");
-		this.setSize(this.animator.getKeyFrame(0f).getRegionWidth(), this.animator.getKeyFrame(0f).getRegionHeight());
+		this.setSize(this.animator.getKeyFrame(0f).getTotalWidth(), this.animator.getKeyFrame(0f).getTotalHeight());
 		
 		this.valveWheel = new GameActor(s);
 		this.valveWheel.loadTexture("valve_wheel.png");

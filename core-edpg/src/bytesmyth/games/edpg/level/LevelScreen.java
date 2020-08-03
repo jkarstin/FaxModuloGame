@@ -6,13 +6,13 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 
 import bytesmyth.games.edpg.FaxModuloGame;
 import bytesmyth.games.edpg.actor.GameActor;
+import bytesmyth.games.edpg.actor.HUD;
 import bytesmyth.games.edpg.actor.object.FaxModulo;
 import bytesmyth.games.edpg.screen.StartScreen;
 import bytesmyth.games.edpg.util.Assets;
@@ -28,13 +28,13 @@ public abstract class LevelScreen implements Screen {
 	
 	private boolean mainStagePaused;
 	
-	public final Stage environment;
-	public final Stage background;
-	public final Stage collisions;
-	public final Stage mainStage;
-	public final Stage foreground;
-	public final Stage uiStage;
-	public final Stage titleStage;
+	public final BasicStage environment;
+	public final BasicStage background;
+	public final BasicStage mainStage;
+	public final BasicStage foreground;
+	public final BasicStage collisions;
+	public final BasicStage uiStage;
+	public final BasicStage titleStage;
 	
 	private final FaxModulo fm;
 	private final LevelCamera cam;
@@ -45,13 +45,13 @@ public abstract class LevelScreen implements Screen {
 		
 		this.mainStagePaused = false;
 		
-		this.environment = new Stage();
-		this.background = new Stage();
-		this.collisions = new Stage();		
-		this.mainStage = new Stage();
-		this.foreground = new Stage();
-		this.uiStage = new Stage();
-		this.titleStage = new Stage();
+		this.environment = new BasicStage();
+		this.background = new BasicStage();
+		this.mainStage = new BasicStage();
+		this.foreground = new BasicStage();
+		this.collisions = new BasicStage();
+		this.uiStage = new BasicStage();
+		this.titleStage = new BasicStage();
 		Gdx.input.setInputProcessor(this.uiStage);
 		
 		this.fm = new FaxModulo(spawn.x, spawn.y, this.mainStage, this.collisions, this.uiStage);
@@ -103,6 +103,10 @@ public abstract class LevelScreen implements Screen {
 		return this.mainStagePaused;
 	}
 	
+	public HUD getHUD() {
+		return this.fm.getHUD();
+	}
+	
 	public abstract void initialize();
 	public abstract void update(float dt);
 	
@@ -129,9 +133,9 @@ public abstract class LevelScreen implements Screen {
 		
 		this.environment.draw();
 		this.background.draw();
-		if (MetaData.SHOW_WIREFRAMES) this.collisions.draw();
 		this.mainStage.draw();
 		this.foreground.draw();
+		if (MetaData.SHOW_WIREFRAMES) this.collisions.draw();
 		this.uiStage.draw();
 		this.titleStage.draw();
 	}

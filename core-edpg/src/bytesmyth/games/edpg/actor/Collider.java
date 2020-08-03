@@ -4,9 +4,8 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Intersector.MinimumTranslationVector;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-
-import bytesmyth.games.edpg.util.MetaData;
 
 public abstract class Collider extends GameActor {
 	
@@ -19,14 +18,14 @@ public abstract class Collider extends GameActor {
 	
 	/*** Fields ***/
 	
-	private GameActor attached;
+	private Actor attached;
 	private final SHAPE_TYP shapeType;
 	protected Polygon boundaryPolygon;
 	protected boolean physical;
 	
 	/*** Constructors ***/
 	
-	public Collider(GameActor attached, SHAPE_TYP type, float x, float y, float width, float height, Stage c) {
+	public Collider(Actor attached, SHAPE_TYP type, float x, float y, float width, float height, Stage c) {
 		super(x, y, c);
 		
 		this.attached = attached;
@@ -37,11 +36,9 @@ public abstract class Collider extends GameActor {
 		this.loadAnimations();
 		
 		this.setSize(width, height);
-		
-		this.setDebug(MetaData.SHOW_WIREFRAMES);
 	}
 	public Collider(SHAPE_TYP type, float x, float y, float width, float height, Stage c) { this(null, type, x, y, width, height, c); }
-	public Collider(GameActor attached, SHAPE_TYP type, Stage c) { this(attached, type, 0f, 0f, 50f, 50f, c); }
+	public Collider(Actor attached, SHAPE_TYP type, Stage c) { this(attached, type, 0f, 0f, 50f, 50f, c); }
 	public Collider(SHAPE_TYP type, Stage c) { this(null, type, c); }
 	
 	/*** Methods ***/
@@ -61,7 +58,7 @@ public abstract class Collider extends GameActor {
 		return this.physical;
 	}
 	
-	public GameActor getAttached() {
+	public Actor getAttached() {
 		return this.attached;
 	}
 	
@@ -142,7 +139,7 @@ public abstract class Collider extends GameActor {
 	private void loadAnimations() {
 		switch (this.shapeType) {
 		case Box:
-			this.loadTexture("gui/collision_wireframe_rect.png");
+			this.loadPatch("gui/collision_wireframe_rect.png", 2, 2, 2, 2);
 			break;
 		case Ellipse:
 			this.loadTexture("gui/collision_wireframe_round.png");

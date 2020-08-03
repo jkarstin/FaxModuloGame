@@ -13,8 +13,9 @@ public class GameObject extends GameActor {
 	public static enum OBJECT_TYP {
 		Basic,
 		Trigger,
-		Physics,
-		Static
+		Moving,
+		Static,
+		Physics
 	}
 	
 	/*** Fields ***/

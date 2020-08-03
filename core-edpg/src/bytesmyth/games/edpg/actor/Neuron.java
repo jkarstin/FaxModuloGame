@@ -3,10 +3,12 @@ package bytesmyth.games.edpg.actor;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Align;
+
+import bytesmyth.games.edpg.util.MetaData;
 
 public class Neuron extends GameActor {
 	
@@ -28,44 +30,18 @@ public class Neuron extends GameActor {
 	
 	private int jumpLevel;
 	private DIRECTION direction;
-	private ArrayList<Animation<TextureRegion>> jumpFrames;
+	private ArrayList<Animation<NinePatch>> jumpFrames;
 	private GameActor neuronJump;
 	private GameActor returnPoint;
 	
 	/*** Constructors ***/
-	
-	public Neuron(float x, float y) {
-		super(x, y);
-		
-		this.jumpLevel = 0;
-		this.direction = DIRECTION.Center;
-		this.jumpFrames = new ArrayList<Animation<TextureRegion>>();
-		
-		this.neuronJump = new GameActor();
-		this.jumpFrames.add(neuronJump.loadTexture("neuron_jump_0.png"));
-		this.jumpFrames.add(neuronJump.loadTexture("neuron_jump_1.png"));
-		this.jumpFrames.add(neuronJump.loadTexture("neuron_jump_2.png"));
-		this.jumpFrames.add(neuronJump.loadTexture("neuron_idle.png"));
-		this.neuronJump.animator.setAnimation(this.jumpFrames.get(3));
-		this.addActor(this.neuronJump);
-		
-		this.returnPoint = new GameActor();
-		this.returnPoint.loadTexture("return_point.png");
-		this.addActor(this.returnPoint);
-		
-		this.updateSize();
-		this.updateOrigin();
-		
-		this.updateReturnPoint();
-	}
-	public Neuron() { this(0f, 0f); }
 	
 	public Neuron(float x, float y, Stage s) {
 		super(x, y, s);
 		
 		this.jumpLevel = 0;
 		this.direction = DIRECTION.Center;
-		this.jumpFrames = new ArrayList<Animation<TextureRegion>>();
+		this.jumpFrames = new ArrayList<Animation<NinePatch>>();
 		
 		this.neuronJump = new GameActor(s);
 		this.jumpFrames.add(neuronJump.loadTexture("neuron_jump_0.png"));
@@ -88,7 +64,7 @@ public class Neuron extends GameActor {
 		
 		this.updateReturnPoint();
 	}
-	public Neuron(Stage s) { this(0f, 0f, s); }
+	public Neuron(Stage s) { this(MetaData.VIRTUAL_WIDTH/2f, MetaData.VIRTUAL_HEIGHT/2f, s); }
 	
 	/*** Methods ***/
 	
@@ -143,7 +119,6 @@ public class Neuron extends GameActor {
 		Vector2 rPoint = new Vector2();
 		rPoint.set(this.returnPoint.getX(Align.center), 0f).add(tmp.set(this.neuronJump.getX(), 0f));
 		rPoint.rotate(this.getRotation());
-		rPoint.add(tmp.set(this.getX(), this.getY()));
 		return rPoint;
 	}
 	
@@ -275,9 +250,9 @@ public class Neuron extends GameActor {
 	
 	@Override
 	public void updateSize() {
-		TextureRegion tr = this.neuronJump.animator.getKeyFrame(0f);
-		float w = tr.getRegionWidth();
-		float h = tr.getRegionHeight();
+		NinePatch np = this.neuronJump.animator.getKeyFrame(0f);
+		float w = np.getTotalWidth();
+		float h = np.getTotalHeight();
 		this.setSize(w, h);
 	}
 	

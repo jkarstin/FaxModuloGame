@@ -2,6 +2,7 @@ package bytesmyth.games.edpg.actor;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Polygon;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class RoundCollider extends Collider {
@@ -12,7 +13,7 @@ public class RoundCollider extends Collider {
 	
 	/*** Constructors ***/
 		
-	public RoundCollider(GameActor attached, float x, float y, float width, float height, Stage c) {
+	public RoundCollider(Actor attached, float x, float y, float width, float height, Stage c) {
 		super(attached, SHAPE_TYP.Ellipse, x, y, width, height, c);
 		
 		this.setNumSides(8);
@@ -20,7 +21,7 @@ public class RoundCollider extends Collider {
 	public RoundCollider(float x, float y, float width, float height, Stage c) {
 		this(null, x, y, width, height, c);
 	}
-	public RoundCollider(GameActor attached, Stage c) {
+	public RoundCollider(Actor attached, Stage c) {
 		this(null, 0f, 0f, 50f, 50f, c);
 	}
 	public RoundCollider(Stage c) { this(null, c); }

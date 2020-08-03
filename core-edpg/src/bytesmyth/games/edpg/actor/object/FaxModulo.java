@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.Align;
 
 import bytesmyth.games.edpg.FaxModuloGame;
 import bytesmyth.games.edpg.actor.HUD;
@@ -29,7 +28,7 @@ public class FaxModulo extends PhysObject {
 	private boolean leftHeld;
 	private boolean inputFlag;
 	private float moveSpeed = 300f;
-	private Animation<TextureRegion> idleAnim, walkAnim;
+	private Animation<NinePatch> idleAnim, walkAnim;
 	
 	private Neuron neuron;
 	private boolean neuronMode;
@@ -53,7 +52,7 @@ public class FaxModulo extends PhysObject {
 		this.velocity.y = -GROUNDING_DISTANCE*15f;
 		this.grounded = true;
 		
-		this.neuron = new Neuron(s);
+		this.neuron = new Neuron(ui);
 		this.neuron.setVisible(false);
 		this.neuronMode = false;
 		
@@ -68,6 +67,12 @@ public class FaxModulo extends PhysObject {
 	public FaxModulo(Stage s, Stage c, Stage ui) { this(0f, 0f, s, c, ui); }
 	
 	/*** Methods ***/
+	
+	//Getters
+	
+	public HUD getHUD() {
+		return this.hud;
+	}
 	
 	//Mechanics
 	
@@ -113,7 +118,7 @@ public class FaxModulo extends PhysObject {
 			this.neuronMode = false;
 			this.inputFlag = false;
 			this.grounded = false;
-			this.setPosition(this.neuron.getReturnPoint().x, this.neuron.getReturnPoint().y, Align.center);
+			this.moveBy(this.neuron.getReturnPoint().x, this.neuron.getReturnPoint().y);
 			this.setVelocity(this.neuron.getDirectionVector().scl(500f));
 			this.neuron.setVisible(false);
 			this.neuron.setDirection(DIRECTION.Center);
@@ -193,7 +198,6 @@ public class FaxModulo extends PhysObject {
 		
 		if (Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT) && this.hud.getJumps() > 0) {
 			this.neuronMode = true;
-			this.neuron.setPosition(this.getX(Align.center), this.getY(Align.center));
 			this.neuron.setVisible(true);
 			this.animator.pause();
 			//Skip all other forms of interaction/movement processing
@@ -286,7 +290,7 @@ public class FaxModulo extends PhysObject {
 		this.idleAnim = this.loadTexture("jex_modem.png");
 		this.walkAnim = this.loadAnimationFromSpritesheet("jex_modem_walk.png", 2, 4, 0.08f, true);
 		this.animator.setAnimation(this.idleAnim);
-		this.setSize(this.animator.getKeyFrame(0f).getRegionWidth(), this.animator.getKeyFrame(0f).getRegionHeight());
+		this.setSize(this.animator.getKeyFrame(0f).getTotalWidth(), this.animator.getKeyFrame(0f).getTotalHeight());
 	}
 	
 	//Overridden (Inherited or Required)

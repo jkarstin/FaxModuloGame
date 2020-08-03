@@ -1,8 +1,10 @@
 package bytesmyth.games.edpg.level;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 import bytesmyth.games.edpg.actor.GameActor;
+import bytesmyth.games.edpg.actor.object.MovingPlatform;
 import bytesmyth.games.edpg.actor.object.StaticObject;
 import bytesmyth.games.edpg.actor.object.trigger.Door;
 import bytesmyth.games.edpg.actor.object.trigger.Dopamine;
@@ -30,11 +32,16 @@ public class Level1 extends LevelScreen {
 		new StaticObject(400f, 4350f, 400f, 50f, this.mainStage, this.collisions);
 		new StaticObject(0f, 5705f, 180f, 50f, this.mainStage, this.collisions);
 		
-		new Door(Level2.class, 10f, 5755f, this.background, this.collisions);
+		(new MovingPlatform(200f, -50f, 200f, 50f, this.mainStage, this.collisions)).addAction(Actions.forever(Actions.sequence(
+			Actions.moveBy(0f, 200f, 4f),
+			Actions.moveBy(0f, -200f, 4f)
+		)));
+		
+		new Door(this.getHUD(), Level2.class, 10f, 5755f, this.background, this.collisions);
 		
 		new Dopamine(100f, 800f, this.background, this.collisions);
 		
-		new InfoBox("SHIFT\nAIM\nLAUNCH", 190f, 20f, 20f, 175f, this.foreground, this.collisions);
+		new InfoBox(this.getHUD(), "SHIFT\nAIM\nLAUNCH", 190f, 20f, 20f, 175f, this.background, this.collisions);
 	}
 
 	@Override

@@ -12,7 +12,7 @@ public class Dopamine extends Trigger {
 		this.setCollider(new RoundCollider(this, x, y, 50f, 50f, c));
 		
 		this.loadTexture("dopamine.png");
-		this.setSize(this.animator.getKeyFrame(0f).getRegionWidth(), this.animator.getKeyFrame(0f).getRegionHeight());
+		this.setSize(this.animator.getKeyFrame(0f).getTotalWidth(), this.animator.getKeyFrame(0f).getTotalHeight());
 	}
 	public Dopamine(Stage s, Stage c) { this(0f, 0f, s, c); }
 

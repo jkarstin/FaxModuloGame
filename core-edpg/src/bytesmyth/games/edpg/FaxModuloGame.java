@@ -8,20 +8,20 @@ import bytesmyth.games.edpg.util.Assets;
 
 public class FaxModuloGame extends Game {
 	
-	public static FaxModuloGame EDP;
+	private static FaxModuloGame FMG;
 	
 	public static void setActiveScreen(Screen screen) {
-		FaxModuloGame.EDP.setScreen(screen);
+		FaxModuloGame.FMG.setScreen(screen);
 	}
 	
 	public static void restartScreen() {
 		try {
-			FaxModuloGame.EDP.setScreen(FaxModuloGame.EDP.getScreen().getClass().newInstance());
+			FaxModuloGame.FMG.setScreen(FaxModuloGame.FMG.getScreen().getClass().newInstance());
 		} catch (Exception e) {}
 	}
 	
 	public FaxModuloGame() {
-		FaxModuloGame.EDP = this;
+		FaxModuloGame.FMG = this;
 	}
 	
 	@Override

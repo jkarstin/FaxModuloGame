@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -59,8 +59,8 @@ public class GameActor extends Group {
 	
 	/*** Methods ***/
 	
-	public Animation<TextureRegion> loadTexture(String filename) {
-		Animation<TextureRegion> anim = this.animator.loadTexture(filename);
+	public Animation<NinePatch> loadPatch(String filename, int left, int right, int top, int bottom) {
+		Animation<NinePatch> anim = this.animator.loadPatch(filename, left, right, top, bottom);
 		
 		this.updateSize();
 		this.updateOrigin();
@@ -68,8 +68,8 @@ public class GameActor extends Group {
 		return anim;
 	}
 	
-	public Animation<TextureRegion> loadAnimationFromFiles(String[] filenames, float frameDuration, boolean loop) {
-		Animation<TextureRegion> anim = this.animator.loadAnimationFromFiles(filenames, frameDuration, loop);
+	public Animation<NinePatch> loadTexture(String filename) {
+		Animation<NinePatch> anim = this.animator.loadTexture(filename);
 		
 		this.updateSize();
 		this.updateOrigin();
@@ -77,8 +77,17 @@ public class GameActor extends Group {
 		return anim;
 	}
 	
-	public Animation<TextureRegion> loadAnimationFromSpritesheet(String filename, int rows, int cols, float frameDuration, boolean loop) {
-		Animation<TextureRegion> anim = this.animator.loadAnimationFromSpritesheet(filename, rows, cols, frameDuration, loop);
+	public Animation<NinePatch> loadAnimationFromFiles(String[] filenames, float frameDuration, boolean loop) {
+		Animation<NinePatch> anim = this.animator.loadAnimationFromFiles(filenames, frameDuration, loop);
+		
+		this.updateSize();
+		this.updateOrigin();
+		
+		return anim;
+	}
+	
+	public Animation<NinePatch> loadAnimationFromSpritesheet(String filename, int rows, int cols, float frameDuration, boolean loop) {
+		Animation<NinePatch> anim = this.animator.loadAnimationFromSpritesheet(filename, rows, cols, frameDuration, loop);
 		
 		this.updateSize();
 		this.updateOrigin();
@@ -87,16 +96,16 @@ public class GameActor extends Group {
 	}
 	
 	public void updateSize() {
-		TextureRegion tr = this.animator.getKeyFrame(0f);
-		float w = tr.getRegionWidth();
-		float h = tr.getRegionHeight();
+		NinePatch np = this.animator.getKeyFrame(0f);
+		float w = np.getTotalWidth();
+		float h = np.getTotalHeight();
 		this.setSize(w, h);
 	}
 	
 	public void updateOrigin() {
-		TextureRegion tr = this.animator.getKeyFrame(0f);
-		float w = tr.getRegionWidth();
-		float h = tr.getRegionHeight();
+		NinePatch np = this.animator.getKeyFrame(0f);
+		float w = np.getTotalWidth();
+		float h = np.getTotalHeight();
 		this.setOrigin(w/2, h/2);
 	}
 	
@@ -118,8 +127,8 @@ public class GameActor extends Group {
 		batch.setColor(c);
 		
 		if (this.isVisible() && this.animator != null && this.animator.animation() != null) {
-			batch.draw(
-				this.animator.getCurrentFrame(),
+			this.animator.getCurrentFrame().draw(
+				batch,
 				this.getX(),
 				this.getY(),
 				this.getOriginX(),

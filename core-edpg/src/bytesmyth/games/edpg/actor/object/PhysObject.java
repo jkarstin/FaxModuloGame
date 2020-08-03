@@ -1,11 +1,12 @@
 package bytesmyth.games.edpg.actor.object;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import bytesmyth.games.edpg.actor.BoxCollider;
 import bytesmyth.games.edpg.actor.Collider;
-import bytesmyth.games.edpg.actor.GameActor;
+import bytesmyth.games.edpg.level.BasicStage;
 
 public class PhysObject extends GameObject {
 	
@@ -133,46 +134,47 @@ public class PhysObject extends GameObject {
 		boolean groundCheck = false;
 		
 		//TODO: Sum up friction of PhysObject and friction of StaticObject to determine friction affect
-		for (GameActor actor : GameActor.getList(this.getStage(), GameObject.class)) {
-			//Skip over reference to current PhysObject
-			if (actor.equals(this)) continue;
-			
-			GameObject obj = (GameObject)actor;
-			
-			Vector2 adjustment = this.collider.preventOverlap(obj.collider);
-			this.moveBy(adjustment.x, adjustment.y);
-			
-			switch (obj.getObjectType()) {
-			case Physics:
-//				PhysObject pobj = (PhysObject)obj;
+		for (Actor actor : ((BasicStage)this.collider.getStage()).getList(Collider.class)) {
+			Collider col = (Collider)actor;
+			if (col.getAttached() != null && !col.getAttached().equals(this)) {
+				GameObject obj = (GameObject)col.getAttached();
 				
-				//TODO: What happens upon physical interactions between PhysObjects?
+				Vector2 adjustment = this.collider.preventOverlap(col);
+				this.moveBy(adjustment.x, adjustment.y);
 				
-				break;
-				
-			case Basic:
-			case Static:
-				if (adjustment.x > 0f || adjustment.x < 0f) {
-					this.acceleration.x = 0f;
-					this.velocity.x = 0f;
+				switch (obj.getObjectType()) {
+				case Physics:
+//					PhysObject pobj = (PhysObject)obj;
+					
+					//TODO: What happens upon physical interactions between PhysObjects?
+					
+					break;
+					
+				case Moving:
+				case Basic:
+				case Static:
+					if ((this.velocity.x < 0f && adjustment.x > 0f) ||
+						(this.velocity.x > 0f && adjustment.x < 0f)) {
+						this.acceleration.x = 0f;
+						this.velocity.x = 0f;
+					}
+					if ((this.velocity.y < 0f && adjustment.y > 0f) ||
+						(this.velocity.y > 0f && adjustment.y < 0f)) {
+						this.acceleration.y = 0f;
+						this.velocity.y = 0f;
+					}
+					
+					if (this.groundDetector.overlaps(col)) {
+						groundCheck = true;
+						if (this.isFalling()) this.setGrounded();
+					}
+									
+					break;
+					
+				default:
+					break;
 				}
-				if (adjustment.y > 0f || adjustment.y < 0f) {
-					this.acceleration.y = 0f;
-					this.velocity.y = 0f;
-				}
-				
-				if (!groundCheck && this.groundDetector.overlaps(obj.collider)) groundCheck = true;
-				
-				if (this.isFalling() && this.groundDetector.overlaps(obj.collider)) {
-					this.setGrounded();
-				}
-				
-				break;
-				
-			case Trigger:
-			default:
-				break;
-			}
+			}	
 		}
 		
 		if (!groundCheck) this.grounded = false;

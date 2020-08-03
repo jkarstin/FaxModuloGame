@@ -2,10 +2,12 @@ package bytesmyth.games.edpg.actor.object;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
-public class StaticObject extends GameObject {
+public class StaticObject extends PatchObject {
 	
 	public StaticObject(float x, float y, float width, float height, Stage s, Stage c) {
-		super(OBJECT_TYP.Static, x, y, width, height, s, c);
+		super(OBJECT_TYP.Static, 0f, 0f, 50f, 50f, "platform.png", 3, 3, 3, 3, s, c);
+		super.setPosition(x, y);
+		super.setSize(width, height);
 	}
 	public StaticObject(float x, float y, Stage s, Stage c) {
 		this(x, y, 50f, 50f, s, c);
