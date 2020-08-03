@@ -32,7 +32,7 @@ public class Level1 extends LevelScreen {
 		new StaticObject(400f, 4350f, 400f, 50f, this.mainStage, this.collisions);
 		new StaticObject(0f, 5705f, 180f, 50f, this.mainStage, this.collisions);
 		
-		(new MovingPlatform(200f, -50f, 200f, 50f, this.mainStage, this.collisions)).addAction(Actions.forever(Actions.sequence(
+		(new MovingPlatform(200f, -50f, 200f, 50f, this.foreground, this.collisions)).addAction(Actions.forever(Actions.sequence(
 			Actions.moveBy(0f, 200f, 4f),
 			Actions.moveBy(0f, -200f, 4f)
 		)));

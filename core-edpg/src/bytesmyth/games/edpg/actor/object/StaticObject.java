@@ -1,11 +1,13 @@
 package bytesmyth.games.edpg.actor.object;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class StaticObject extends PatchObject {
 	
 	public StaticObject(float x, float y, float width, float height, Stage s, Stage c) {
 		super(OBJECT_TYP.Static, 0f, 0f, 50f, 50f, "platform.png", 3, 3, 3, 3, s, c);
+		this.setColor(new Color(0.1f, 0.6f, 0.5f, 1f));
 		super.setPosition(x, y);
 		super.setSize(width, height);
 	}
